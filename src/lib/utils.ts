@@ -36,24 +36,48 @@ export const RELATION_LABELS: Record<RelationType, string> = {
   lover: '恋人',
   mentor: '师父',
   student: '徒弟',
+  teacher: '老师',
   sibling: '兄弟姐妹',
   parent: '父母',
   child: '子女',
   rival: '宿敌',
   neutral: '中立',
+  colleague: '同僚',
+  teammate: '队友',
+  friend: '朋友',
+  former_friend: '昔日好友',
+  benefactor: '恩人',
+  creator: '创造者',
+  guardian: '守护者',
+  comrade: '战友',
+  subordinate: '下属',
+  superior: '上级',
+  connection: '关联',
 };
 
 export const RELATION_COLORS: Record<RelationType, string> = {
-  ally: '#1A8A5A',    // jade - 友善
-  enemy: '#C02030',   // crimson - 敌对
-  lover: '#D44077',   // rose - 恋情
-  mentor: '#D4A017',  // gold - 传承
-  student: '#A07810', // dark gold - 学习
-  sibling: '#2A7AAA', // azure - 家庭
-  parent: '#1A5A8A',  // dark azure - 亲情
-  child: '#3A8ABB',   // light azure - 亲情
-  rival: '#A03080',   // purple - 对立
-  neutral: '#6A7080', // gray - 中立
+  ally: '#1A8A5A',         // jade - 友善
+  enemy: '#C02030',        // crimson - 敌对
+  lover: '#D44077',        // rose - 恋情
+  mentor: '#D4A017',       // gold - 传承
+  student: '#A07810',      // dark gold - 学习
+  teacher: '#C49018',      // warm gold - 师长
+  sibling: '#2A7AAA',      // azure - 家庭
+  parent: '#1A5A8A',       // dark azure - 亲情
+  child: '#3A8ABB',        // light azure - 亲情
+  rival: '#A03080',        // purple - 对立
+  neutral: '#6A7080',      // gray - 中立
+  colleague: '#5A8A6A',    // sage green - 同僚
+  teammate: '#2A9A7A',     // teal - 队友
+  friend: '#3A9A5A',       // green - 友情
+  former_friend: '#8A6A5A', // muted brown - 昔日
+  benefactor: '#C49018',   // amber - 恩情
+  creator: '#7A50B0',      // violet - 创造
+  guardian: '#3A6AAA',     // steel blue - 守护
+  comrade: '#5A7AAA',      // navy blue - 战友
+  subordinate: '#6A8A7A',  // muted teal - 下属
+  superior: '#5A7A9A',     // slate blue - 上级
+  connection: '#8A8A8A',   // medium gray - 关联
 };
 
 // Role display

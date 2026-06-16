@@ -118,6 +118,8 @@ export default function HeroPage({ params }: Props) {
                   <Link href={`/factions/${faction.id}`} className="text-gold hover:text-gold-light transition-colors">
                     {faction.name}
                   </Link>
+                ) : hero.factionName ? (
+                  <span className="text-parchment">{hero.factionName}</span>
                 ) : (
                   <span className="text-parchment">{hero.faction}</span>
                 )}
@@ -128,6 +130,42 @@ export default function HeroPage({ params }: Props) {
                   {['简单 ⭐', '中等 ⭐⭐', '困难 ⭐⭐⭐'][hero.difficulty - 1]}
                 </span>
               </div>
+              {hero.energy && (
+                <div className="flex justify-between">
+                  <span className="text-parchment-dark">能量类型</span>
+                  <span className="text-parchment">{hero.energy}</span>
+                </div>
+              )}
+              {hero.race && (
+                <div className="flex justify-between">
+                  <span className="text-parchment-dark">种族</span>
+                  <span className="text-parchment">{hero.race}</span>
+                </div>
+              )}
+              {hero.city && (
+                <div className="flex justify-between">
+                  <span className="text-parchment-dark">所在城市</span>
+                  <span className="text-parchment">{hero.city}</span>
+                </div>
+              )}
+              {hero.region && (
+                <div className="flex justify-between">
+                  <span className="text-parchment-dark">所属地域</span>
+                  <span className="text-parchment">{hero.region}</span>
+                </div>
+              )}
+              {hero.height && (
+                <div className="flex justify-between">
+                  <span className="text-parchment-dark">身高</span>
+                  <span className="text-parchment">{hero.height}</span>
+                </div>
+              )}
+              {hero.identity && (
+                <div className="flex justify-between">
+                  <span className="text-parchment-dark">身份</span>
+                  <span className="text-parchment">{hero.identity}</span>
+                </div>
+              )}
             </div>
 
             <div className="flex flex-wrap gap-1 mt-4">
@@ -248,6 +286,39 @@ export default function HeroPage({ params }: Props) {
                     </span>
                   </Link>
                 ))}
+              </div>
+            </div>
+          )}
+
+          {/* Voice Lines */}
+          {hero.voiceLines && Object.values(hero.voiceLines).some(v => v && v.trim()) && (
+            <div className="card p-6">
+              <h2 className="text-xl font-bold text-gold mb-4">语音台词</h2>
+              <div className="space-y-4">
+                {hero.voiceLines.move && hero.voiceLines.move.trim() && (
+                  <div>
+                    <div className="text-xs text-parchment-dark mb-1 font-medium">🏃 移动语音</div>
+                    <p className="text-parchment text-sm leading-relaxed whitespace-pre-line">{hero.voiceLines.move}</p>
+                  </div>
+                )}
+                {hero.voiceLines.skill && hero.voiceLines.skill.trim() && (
+                  <div>
+                    <div className="text-xs text-parchment-dark mb-1 font-medium">⚔️ 技能语音</div>
+                    <p className="text-parchment text-sm leading-relaxed whitespace-pre-line">{hero.voiceLines.skill}</p>
+                  </div>
+                )}
+                {hero.voiceLines.interaction && hero.voiceLines.interaction.trim() && (
+                  <div>
+                    <div className="text-xs text-parchment-dark mb-1 font-medium">💬 互动语音</div>
+                    <p className="text-parchment text-sm leading-relaxed whitespace-pre-line">{hero.voiceLines.interaction}</p>
+                  </div>
+                )}
+                {hero.voiceLines.function && hero.voiceLines.function.trim() && (
+                  <div>
+                    <div className="text-xs text-parchment-dark mb-1 font-medium">🔔 功能语音</div>
+                    <p className="text-parchment text-sm leading-relaxed whitespace-pre-line">{hero.voiceLines.function}</p>
+                  </div>
+                )}
               </div>
             </div>
           )}

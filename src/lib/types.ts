@@ -10,16 +10,32 @@ export interface Hero {
   title: string;         // 称号, e.g. "圣光女神"
   alias?: string[];      // 别名列表
   faction: string;       // 所属阵营 ID
+  factionName?: string;  // 阵营中文名, e.g. "稷下学院"
   role: HeroRole[];      // 游戏定位
   difficulty: 1 | 2 | 3; // 操作难度
+  energy?: string;       // 能量类型, e.g. "魔道"/"机关"
+  region?: string;       // 所属地域, e.g. "逐鹿"
+  race?: string;         // 种族, e.g. "人类"/"人造人"
+  city?: string;         // 所在城市, e.g. "稷下学院"
+  height?: string;       // 身高, e.g. "175cm"
+  identity?: string;     // 身份标签, e.g. "稷下三贤者"
   description: string;   // 简短介绍 (< 200字)
   lore: string;          // 完整故事 (Markdown)
   relations: HeroRelation[];
   skills?: Skill[];
+  voiceLines?: VoiceLines; // 语音台词
   tags: string[];
   imageUrl?: string;
+  avatarUrl?: string;    // 头像图片路径
   createdAt: string;     // ISO 8601
   updatedAt: string;
+}
+
+export interface VoiceLines {
+  move?: string;         // 移动语音
+  skill?: string;        // 技能语音
+  interaction?: string;  // 互动语音
+  function?: string;     // 功能语音
 }
 
 export type HeroRole = '战士' | '法师' | '射手' | '刺客' | '坦克' | '辅助';
@@ -31,16 +47,28 @@ export interface HeroRelation {
 }
 
 export type RelationType =
-  | 'ally'     // 盟友
-  | 'enemy'    // 敌人
-  | 'lover'    // 恋人
-  | 'mentor'   // 师父
-  | 'student'  // 徒弟
-  | 'sibling'  // 兄弟姐妹
-  | 'parent'   // 父母
-  | 'child'    // 子女
-  | 'rival'    // 宿敌
-  | 'neutral'; // 中立
+  | 'ally'          // 盟友
+  | 'enemy'         // 敌人
+  | 'lover'         // 恋人
+  | 'mentor'        // 师父
+  | 'student'       // 徒弟
+  | 'teacher'       // 老师（与 mentor 类似，更口语化）
+  | 'sibling'       // 兄弟姐妹
+  | 'parent'        // 父母
+  | 'child'         // 子女
+  | 'rival'         // 宿敌
+  | 'neutral'       // 中立
+  | 'colleague'     // 同僚
+  | 'teammate'      // 队友
+  | 'friend'        // 朋友
+  | 'former_friend' // 昔日好友
+  | 'benefactor'    // 恩人
+  | 'creator'       // 创造者
+  | 'guardian'      // 守护者
+  | 'comrade'       // 战友
+  | 'subordinate'   // 下属
+  | 'superior'      // 上级
+  | 'connection';   // 关联
 
 export interface Skill {
   name: string;

@@ -40,9 +40,11 @@ export default function HeroesPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {heroes.map(hero => (
           <Link key={hero.id} href={`/heroes/${hero.id}`} className="card p-4 group">
-            {/* Hero Image Placeholder */}
+            {/* Hero Image */}
             <div className="w-full h-32 bg-gradient-to-br from-dark-500 to-dark-600 rounded-md mb-3 flex items-center justify-center overflow-hidden">
-              {hero.imageUrl ? (
+              {hero.avatarUrl ? (
+                <img src={hero.avatarUrl} alt={hero.name} className="w-full h-full object-cover" />
+              ) : hero.imageUrl ? (
                 <img src={hero.imageUrl} alt={hero.name} className="w-full h-full object-cover" />
               ) : (
                 <span className="text-4xl">⚔️</span>
@@ -57,7 +59,10 @@ export default function HeroesPage() {
                 {['⭐', '⭐⭐', '⭐⭐⭐'][hero.difficulty - 1]}
               </div>
             </div>
-            <div className="text-xs text-gold-dark mb-2">{hero.title}</div>
+            <div className="text-xs text-gold-dark mb-1">{hero.title}</div>
+            {hero.identity && (
+              <div className="text-xs text-azure-light mb-1">{hero.identity}</div>
+            )}
 
             <div className="flex flex-wrap gap-1 mb-2">
               {hero.role.map(r => (
@@ -69,6 +74,11 @@ export default function HeroesPage() {
                   {r}
                 </span>
               ))}
+              {hero.energy && (
+                <span className="badge text-xs px-2 py-0.5 bg-dark-500 text-parchment-dark border border-gold/20">
+                  {hero.energy}
+                </span>
+              )}
             </div>
 
             <p className="text-parchment-dark text-xs line-clamp-2">{hero.description}</p>

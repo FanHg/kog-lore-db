@@ -243,7 +243,7 @@ export function buildSearchIndex() {
     description: h.description,
     url: `/heroes/${h.id}`,
     tags: h.tags,
-    searchText: `${h.name} ${h.title} ${h.alias?.join(' ')} ${h.description} ${h.tags.join(' ')}`,
+    searchText: `${h.name} ${h.title} ${h.alias?.join(' ')} ${h.factionName || ''} ${h.energy || ''} ${h.identity || ''} ${h.description} ${h.tags.join(' ')}`,
   }));
 
   const factions = factionDb.getAll().map(f => ({

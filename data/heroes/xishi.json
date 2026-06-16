@@ -1,0 +1,68 @@
+{
+  "id": "xishi",
+  "name": "西施",
+  "title": "梦之纱",
+  "alias": [
+    "施夷光",
+    "探宝者",
+    "宝藏少女"
+  ],
+  "faction": "jixia",
+  "factionName": "稷下学院",
+  "role": [
+    "法师"
+  ],
+  "difficulty": 3,
+  "energy": "魔道",
+  "region": "逐鹿",
+  "race": "人类",
+  "city": "稷下学院",
+  "height": "163cm",
+  "identity": "稷下学生",
+  "description": "南荒的少女西施，自小就为生计奔波。在一次躲避债主追赶时，她误入荒废的古祠堂，并获得了来自南洲的力量。这力量在随后几年帮她解决了许多麻烦，也吸引来觊觎力量之人。他们假借债主之名缠上她，设计了一场诱捕。在庄周的帮助下，她逃往稷下学院，开始学习运用自己的力量，并瞄向了奖品可观的归虚梦演赛事……",
+  "lore": "",
+  "relations": [
+    {
+      "targetId": "yao",
+      "type": "teammate",
+      "description": "星之队队友"
+    },
+    {
+      "targetId": "mengya",
+      "type": "teammate",
+      "description": "星之队队友"
+    },
+    {
+      "targetId": "zhuangzhou",
+      "type": "teacher",
+      "description": "庄周救了西施并带她来到稷下"
+    },
+    {
+      "targetId": "lubandashi",
+      "type": "teammate",
+      "description": "星之队队友"
+    },
+    {
+      "targetId": "lubanqihao",
+      "type": "connection",
+      "description": "西施曾捡到鲁班七号并试图倒卖"
+    }
+  ],
+  "voiceLines": {
+    "move": "",
+    "skill": "",
+    "interaction": "",
+    "function": ""
+  },
+  "tags": [
+    "稷下学院",
+    "魔道",
+    "星之队",
+    "南荒",
+    "探宝者"
+  ],
+  "imageUrl": "/images/heroes/xishi.jpg",
+  "avatarUrl": "/images/heroes/xishi_avatar.jpg",
+  "createdAt": "2024-01-01T00:00:00Z",
+  "updatedAt": "2026-06-16T00:00:00Z"
+}
