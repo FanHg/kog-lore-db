@@ -40,23 +40,28 @@ export default function HeroesPage() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {heroes.map(hero => (
           <Link key={hero.id} href={`/heroes/${hero.id}`} className="card p-4 group">
-            {/* Hero Image */}
-            <div className="w-full h-32 bg-gradient-to-br from-dark-500 to-dark-600 rounded-md mb-3 flex items-center justify-center overflow-hidden">
-              {hero.avatarUrl ? (
-                <img src={hero.avatarUrl} alt={hero.name} className="w-full h-full object-cover" />
-              ) : hero.imageUrl ? (
-                <img src={hero.imageUrl} alt={hero.name} className="w-full h-full object-cover" />
-              ) : (
-                <span className="text-4xl">⚔️</span>
-              )}
-            </div>
+            <div className="flex items-center gap-3 mb-2">
+              {/* Small Avatar */}
+              <div className="w-12 h-12 flex-shrink-0 bg-gradient-to-br from-dark-500 to-dark-600 rounded-full overflow-hidden border border-gold/20">
+                {hero.avatarUrl ? (
+                  <img src={hero.avatarUrl} alt={hero.name} className="w-full h-full object-cover" />
+                ) : hero.imageUrl ? (
+                  <img src={hero.imageUrl} alt={hero.name} className="w-full h-full object-cover" />
+                ) : (
+                  <span className="text-xl leading-[48px] text-center block">⚔️</span>
+                )}
+              </div>
 
-            <div className="flex items-start justify-between mb-1">
-              <h2 className="text-lg font-bold text-parchment group-hover:text-gold transition-colors">
-                {hero.name}
-              </h2>
-              <div className="text-xs text-parchment-dark bg-dark-500 px-1.5 py-0.5 rounded">
-                {['⭐', '⭐⭐', '⭐⭐⭐'][hero.difficulty - 1]}
+              <div className="min-w-0 flex-1">
+                <div className="flex items-center gap-2">
+                  <h2 className="text-base font-bold text-parchment group-hover:text-gold transition-colors truncate">
+                    {hero.name}
+                  </h2>
+                  <span className="text-xs text-parchment-dark bg-dark-500 px-1 py-0.5 rounded flex-shrink-0">
+                    {['⭐', '⭐⭐', '⭐⭐⭐'][hero.difficulty - 1]}
+                  </span>
+                </div>
+                <div className="text-xs text-gold-dark truncate">{hero.title}</div>
               </div>
             </div>
             <div className="text-xs text-gold-dark mb-1">{hero.title}</div>
