@@ -53,14 +53,11 @@ export default function HeroesPage() {
               </div>
 
               <div className="min-w-0 flex-1">
-                <div className="flex items-center gap-2">
-                  <h2 className="text-base font-bold text-parchment group-hover:text-gold transition-colors truncate">
-                    {hero.name}
-                  </h2>
-                  <span className="text-xs text-parchment-dark bg-dark-500 px-1 py-0.5 rounded flex-shrink-0">
-                    {['⭐', '⭐⭐', '⭐⭐⭐'][hero.difficulty - 1]}
-                  </span>
-                </div>
+              <div className="flex items-center gap-2">
+                <h2 className="text-base font-bold text-parchment group-hover:text-gold transition-colors truncate">
+                  {hero.name}
+                </h2>
+              </div>
                 <div className="text-xs text-gold-dark truncate">{hero.title}</div>
               </div>
             </div>

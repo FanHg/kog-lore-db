@@ -125,10 +125,16 @@ export default function HeroPage({ params }: Props) {
                 )}
               </div>
               <div className="flex justify-between">
-                <span className="text-parchment-dark">操作难度</span>
-                <span className="text-parchment">
-                  {['简单 ⭐', '中等 ⭐⭐', '困难 ⭐⭐⭐'][hero.difficulty - 1]}
-                </span>
+                <span className="text-parchment-dark">所属阵营</span>
+                {faction ? (
+                  <Link href={`/factions/${faction.id}`} className="text-gold hover:text-gold-light transition-colors">
+                    {faction.name}
+                  </Link>
+                ) : hero.factionName ? (
+                  <span className="text-parchment">{hero.factionName}</span>
+                ) : (
+                  <span className="text-parchment">{hero.faction}</span>
+                )}
               </div>
               {hero.energy && (
                 <div className="flex justify-between">
