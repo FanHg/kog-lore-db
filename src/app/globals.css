@@ -1,0 +1,159 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   王者荣耀世界观数据库 - 全局样式
+   ============================================================ */
+
+:root {
+  --bg-primary: #050810;
+  --bg-secondary: #0A0E1A;
+  --bg-card: #0F1525;
+  --bg-hover: #161C30;
+  --color-gold: #D4A017;
+  --color-gold-light: #F0C040;
+  --color-jade: #1A8A5A;
+  --color-crimson: #C02030;
+  --color-azure: #1A5A8A;
+  --color-text: #E8DCC8;
+  --color-text-muted: #9A8E7E;
+  --color-border: rgba(212, 160, 23, 0.2);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--color-text);
+  font-family: 'PingFang SC', 'Microsoft YaHei', 'Noto Sans SC', system-ui, sans-serif;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-gold);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-light);
+}
+
+/* Selection */
+::selection {
+  background: rgba(212, 160, 23, 0.3);
+  color: var(--color-gold-light);
+}
+
+/* ============================================================
+   Lore Content Styles (Markdown rendered HTML)
+   ============================================================ */
+.lore-content h1,
+.lore-content h2,
+.lore-content h3 {
+  color: var(--color-gold);
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+.lore-content h2 {
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.5rem;
+}
+.lore-content p {
+  color: var(--color-text);
+  margin-bottom: 1rem;
+}
+.lore-content strong {
+  color: var(--color-gold-light);
+}
+.lore-content em {
+  color: var(--color-text-muted);
+  font-style: italic;
+}
+.lore-content blockquote {
+  border-left: 3px solid var(--color-gold);
+  padding-left: 1rem;
+  margin: 1rem 0;
+  color: var(--color-text-muted);
+  background: rgba(212, 160, 23, 0.05);
+  border-radius: 0 4px 4px 0;
+  padding: 0.75rem 1rem;
+}
+.lore-content ul,
+.lore-content ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+}
+.lore-content li {
+  margin-bottom: 0.25rem;
+}
+.lore-content hr {
+  border-color: var(--color-border);
+  margin: 1.5rem 0;
+}
+.lore-content a {
+  color: var(--color-gold);
+  text-decoration: underline;
+  text-decoration-color: rgba(212, 160, 23, 0.4);
+}
+.lore-content a:hover {
+  color: var(--color-gold-light);
+}
+.lore-content code {
+  background: rgba(212, 160, 23, 0.1);
+  padding: 0.125rem 0.375rem;
+  border-radius: 3px;
+  font-size: 0.875em;
+  color: var(--color-gold-light);
+}
+
+/* ============================================================
+   Component Base Styles
+   ============================================================ */
+@layer components {
+  .card {
+    @apply bg-dark-700 border border-gold/20 rounded-lg overflow-hidden
+           transition-all duration-200 hover:border-gold/40 hover:shadow-gold-sm;
+  }
+
+  .btn-primary {
+    @apply bg-gold text-dark-900 font-semibold px-4 py-2 rounded-md
+           hover:bg-gold-light transition-colors duration-200;
+  }
+
+  .btn-ghost {
+    @apply text-parchment border border-gold/30 px-4 py-2 rounded-md
+           hover:bg-gold/10 hover:border-gold/60 transition-all duration-200;
+  }
+
+  .badge {
+    @apply inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium;
+  }
+
+  .section-title {
+    @apply text-2xl font-bold text-gold border-b border-gold/20 pb-3 mb-6;
+  }
+
+  .nav-link {
+    @apply text-parchment-dark hover:text-gold transition-colors duration-150
+           flex items-center gap-2 px-3 py-2 rounded-md hover:bg-dark-600;
+  }
+
+  .nav-link.active {
+    @apply text-gold bg-dark-600;
+  }
+}

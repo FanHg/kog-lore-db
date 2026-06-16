@@ -1,0 +1,66 @@
+[
+  {
+    "id": "quote-yao-001",
+    "heroId": "yao",
+    "text": "世间有些守护，注定是无声的。",
+    "context": "瑶对后羿的心声",
+    "type": "story",
+    "tags": ["守护", "爱情", "神话"]
+  },
+  {
+    "id": "quote-yao-002",
+    "heroId": "yao",
+    "text": "只要有人需要光，我便不会熄灭。",
+    "context": "面对修罗大军时的独白",
+    "type": "battle",
+    "tags": ["守护", "意志", "光明"]
+  },
+  {
+    "id": "quote-houyi-001",
+    "heroId": "houyi",
+    "text": "我射落了九个太阳，却射不穿这一道天规。",
+    "context": "后羿对无法与瑶在一起的叹息",
+    "type": "story",
+    "tags": ["神话", "射日", "爱情", "遗憾"]
+  },
+  {
+    "id": "quote-houyi-002",
+    "heroId": "houyi",
+    "text": "挺身而出，是射手的本能，也是英雄的使命。",
+    "context": "神魔长安之战前的誓言",
+    "type": "battle",
+    "tags": ["英雄", "守护", "使命"]
+  },
+  {
+    "id": "quote-daji-001",
+    "heroId": "daji",
+    "text": "这世界从来不缺少守护者，缺少的是能看穿一切谎言的人。",
+    "context": "妲己对秩序与规则的嘲讽",
+    "type": "story",
+    "tags": ["混乱", "哲学", "讽刺"]
+  },
+  {
+    "id": "quote-daji-002",
+    "heroId": "daji",
+    "text": "来吧，让我看看你有多少真心，配得上九尾的回眸。",
+    "context": "战斗中对敌人的挑衅",
+    "type": "battle",
+    "tags": ["挑战", "魅惑", "自信"]
+  },
+  {
+    "id": "quote-change-001",
+    "heroId": "change",
+    "text": "月亮每日都圆，人心何时能圆？",
+    "context": "嫦娥独守月宫时的感慨",
+    "type": "story",
+    "tags": ["孤独", "月亮", "思念"]
+  },
+  {
+    "id": "quote-change-002",
+    "heroId": "change",
+    "text": "既然选择了月宫，便不再仰望什么了。",
+    "context": "嫦娥奔月后的心境",
+    "type": "story",
+    "tags": ["选择", "孤独", "放下"]
+  }
+]

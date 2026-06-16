@@ -1,0 +1,28 @@
+[
+  {
+    "id": "org-changan-guard",
+    "name": "长安守卫军",
+    "type": "military",
+    "faction": "changan",
+    "description": "长安城最精锐的守卫力量，由神将后羿直接统帅，担负着保卫城市安全的使命。",
+    "content": "## 长安守卫军\n\n长安守卫军是长安城的核心军事力量，由历代神将亲自训练，是人间最强大的军队之一。\n\n### 编制\n\n- 神将营：直属后羿统领，最精锐的战士\n- 圣光卫：由瑶的圣光护佑，负责城内治安\n- 弓箭营：以后羿射术为基础训练的神射手队伍\n\n### 使命\n\n守护长安，直至最后一人。",
+    "leader": "houyi",
+    "members": ["houyi"],
+    "purpose": "守护长安城，抵御修罗道的入侵",
+    "status": "active",
+    "tags": ["军队", "长安", "守护", "后羿"]
+  },
+  {
+    "id": "org-xiuluo-vanguard",
+    "name": "修罗先锋队",
+    "type": "military",
+    "faction": "xiuluo",
+    "description": "修罗道最凶猛的战斗力量，每次入侵人间都以此队为前锋。",
+    "content": "## 修罗先锋队\n\n修罗先锋队是修罗道的尖刀部队，由最为凶猛的魔族战士组成，以破坏性与攻击性闻名。\n\n他们往往是修罗道入侵的先头部队，专门负责突破防线，制造恐慌。",
+    "leader": null,
+    "members": ["daji"],
+    "purpose": "突破人间防线，为修罗大军开路",
+    "status": "active",
+    "tags": ["军队", "修罗道", "入侵", "先锋"]
+  }
+]
