@@ -125,10 +125,17 @@ export interface TimelineEntry {
 }
 
 // ---------- 区域详情 Area ----------
+export interface SubArea {
+  name: string;         // 小区域名称
+  description?: string; // 小区域描述
+  images?: string[];    // 小区域图片URL列表
+}
+
 export interface Area {
   name: string;         // 区域名称
   description: string;  // 区域详情描述
   images?: string[];    // 区域图片URL列表
+  subAreas?: SubArea[]; // 小区域列表
 }
 
 // ---------- 城池/属地 District ----------

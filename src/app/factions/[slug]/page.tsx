@@ -270,7 +270,30 @@ export default function FactionPage({ params }: Props) {
                               <div className="p-4">
                                 <h4 className="text-sm font-semibold text-parchment mb-1.5">{area.name}</h4>
                                 {area.description && (
-                                  <p className="text-parchment-dark text-xs leading-relaxed">{area.description}</p>
+                                  <p className="text-parchment-dark text-xs leading-relaxed mb-3">{area.description}</p>
+                                )}
+                                {/* 小区域 subAreas */}
+                                {area.subAreas && area.subAreas.length > 0 && (
+                                  <div className="space-y-3 mt-3 pt-3 border-t border-gold/10">
+                                    {area.subAreas.map((sub, si) => (
+                                      <div key={si} className="group">
+                                        <h5 className="text-xs font-medium text-gold/80 mb-1">{sub.name}</h5>
+                                        {sub.images && sub.images.length > 0 && (
+                                          <div className={`grid gap-1 mb-2 ${sub.images.length === 1 ? 'grid-cols-1' : 'grid-cols-2'}`}>
+                                            {sub.images.map((simg, sj) => (
+                                              <div key={sj} className="relative aspect-video overflow-hidden rounded overflow-hidden">
+                                                <img src={simg} alt={`${sub.name} - ${sj + 1}`}
+                                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                                              </div>
+                                            ))}
+                                          </div>
+                                        )}
+                                        {sub.description && (
+                                          <p className="text-parchment-dark/70 text-xs leading-relaxed">{sub.description}</p>
+                                        )}
+                                      </div>
+                                    ))}
+                                  </div>
                                 )}
                               </div>
                             </div>
