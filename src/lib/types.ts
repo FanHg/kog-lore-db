@@ -140,10 +140,12 @@ export interface Area {
 
 // ---------- 城池/属地 District ----------
 export interface District {
-  name: string;         // 城池/属地名称
-  description: string;  // 完整介绍
-  images?: string[];    // 城池图片URL列表
-  areas?: Area[];       // 子区域详情列表
+  name: string;              // 城池/属地名称
+  description: string;       // 完整介绍
+  images?: string[];         // 城池图片URL列表
+  areas?: Area[];            // 子区域详情列表
+  representHeroes?: string[]; // 代表英雄列表
+  miracle?: string;          // 奇迹之力描述
 }
 
 // ---------- 阵营 Faction ----------

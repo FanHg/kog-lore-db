@@ -233,6 +233,29 @@ export default function FactionPage({ params }: Props) {
                       </div>
                     )}
 
+                    {/* 代表英雄 */}
+                    {district.representHeroes && district.representHeroes.length > 0 && (
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-xs text-gold/60 shrink-0">代表英雄</span>
+                        {district.representHeroes.map((hero, hi) => (
+                          <span key={hi} className="inline-block px-2 py-0.5 text-xs rounded bg-gold/10 text-gold/90 border border-gold/20">
+                            {hero}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+
+                    {/* 奇迹之力 */}
+                    {district.miracle && (
+                      <div className="rounded-lg border border-gold/20 bg-dark-800/50 p-4">
+                        <div className="flex items-center gap-2 mb-2">
+                          <span className="text-gold/70 text-xs font-medium">奇迹之力</span>
+                          <span className="flex-1 h-px bg-gold/10" />
+                        </div>
+                        <p className="text-parchment-dark text-xs leading-relaxed">{district.miracle}</p>
+                      </div>
+                    )}
+
                     {/* 城池图片 */}
                     {district.images && district.images.length > 0 && (
                       <div className={`grid gap-3 ${district.images.length === 1 ? 'grid-cols-1' : district.images.length === 2 ? 'grid-cols-2' : 'grid-cols-2 lg:grid-cols-3'}`}>
