@@ -145,14 +145,15 @@ export interface Faction {
   name: string;
   type: FactionType;
   description: string;
-  content: string;       // 完整介绍 (Markdown)
-  districts?: District[]; // 城池/属地列表
-  miracle?: string;      // 奇迹之力描述
-  leader?: string;       // 领袖英雄 ID
-  members: string[];     // 成员英雄 ID（英雄名称列表）
-  allies: string[];      // 同盟阵营 ID
-  enemies: string[];     // 敌对阵营 ID
-  location?: string;     // 主要地点 ID
+  content?: string;          // 详细介绍
+  districts?: District[];     // 城池/属地列表
+  miracle?: string;           // 奇迹之力描述
+  miracleImages?: string[];   // 奇迹之力图片URL列表
+  leader?: string;            // 领袖英雄 ID
+  members: string[];          // 成员英雄 ID（英雄名称列表）
+  allies: string[];           // 同盟阵营 ID
+  enemies: string[];          // 敌对阵营 ID
+  location?: string;          // 主要地点 ID
   status: FactionStatus;
   tags: string[];
   imageUrl?: string;

@@ -3,7 +3,6 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { factionDb, heroDb, locationDb } from '@/lib/db';
-import { marked } from 'marked';
 
 interface Props {
   params: { slug: string };
@@ -26,7 +25,6 @@ export default function FactionPage({ params }: Props) {
   const faction = factionDb.getById(params.slug);
   if (!faction) notFound();
 
-  // members 存的是英雄名称，尝试按名称查找
   const memberHeroes = faction.members
     .map(nameOrId => heroDb.getById(nameOrId))
     .filter(Boolean);
@@ -34,9 +32,6 @@ export default function FactionPage({ params }: Props) {
   const allies = faction.allies.map(id => factionDb.getById(id)).filter(Boolean);
   const enemies = faction.enemies.map(id => factionDb.getById(id)).filter(Boolean);
   const location = faction.location ? locationDb.getById(faction.location) : null;
-  const contentHtml = faction.content
-    ? (marked(faction.content, { breaks: true, gfm: true }) as string)
-    : '';
 
   return (
     <>
@@ -71,7 +66,6 @@ export default function FactionPage({ params }: Props) {
               </div>
             )}
 
-            {/* 城池/属地数量 */}
             {faction.districts && faction.districts.length > 0 && (
               <div className="mb-3 text-sm">
                 <span className="text-parchment-dark">城池/属地：</span>
@@ -88,29 +82,22 @@ export default function FactionPage({ params }: Props) {
             </div>
           </div>
 
-          {/* 城池/属地快速导航 */}
-          {faction.districts && faction.districts.length > 0 && (
-            <div className="card p-5">
-              <h3 className="font-semibold text-gold mb-3">城池 / 属地</h3>
-              <div className="space-y-2">
-                {faction.districts.map(district => (
-                  <a key={district.name} href={`#district-${encodeURIComponent(district.name)}`}
-                    className="flex items-center gap-2 p-2 rounded hover:bg-dark-600 transition-colors group">
-                    <span className="w-1.5 h-1.5 rounded-full bg-gold/50 group-hover:bg-gold transition-colors" />
-                    <div>
-                      <div className="text-sm font-medium text-parchment group-hover:text-gold transition-colors">{district.name}</div>
-                      {district.areas && district.areas.length > 0 && (
-                        <div className="text-xs text-parchment-dark">{district.areas.length} 个区域</div>
-                      )}
-                    </div>
-                  </a>
-                ))}
-              </div>
+          {/* 快速导航 */}
+          <div className="card p-5">
+            <h3 className="font-semibold text-gold mb-3 text-sm">📍 页面导航</h3>
+            <div className="space-y-1">
+              <a href="#intro" className="block text-sm text-parchment-dark hover:text-gold transition-colors py-1">阵营简介</a>
+              {faction.content && <a href="#detail" className="block text-sm text-parchment-dark hover:text-gold transition-colors py-1">详细介绍</a>}
+              {faction.miracle && <a href="#miracle" className="block text-sm text-parchment-dark hover:text-gold transition-colors py-1">奇迹之力</a>}
+              {faction.districts?.map(d => (
+                <a key={d.name} href={`#district-${encodeURIComponent(d.name)}`}
+                  className="block text-sm text-parchment-dark hover:text-gold transition-colors py-1 pl-3">{d.name}</a>
+              ))}
             </div>
-          )}
+          </div>
 
           {/* 代表英雄 */}
-          {memberHeroes.length > 0 && (
+          {memberHeroes.length > 0 ? (
             <div className="card p-5">
               <h3 className="font-semibold text-gold mb-3">代表英雄 ({memberHeroes.length})</h3>
               <div className="space-y-2">
@@ -123,29 +110,22 @@ export default function FactionPage({ params }: Props) {
                     )}
                     <div>
                       <span className="text-parchment text-sm font-medium">{hero!.name}</span>
-                      {hero!.title && (
-                        <div className="text-xs text-parchment-dark">{hero!.title}</div>
-                      )}
+                      {hero!.title && <div className="text-xs text-parchment-dark">{hero!.title}</div>}
                     </div>
                   </Link>
                 ))}
               </div>
             </div>
-          )}
-
-          {/* 英雄名单（无链接版） */}
-          {memberHeroes.length === 0 && faction.members.length > 0 && (
+          ) : faction.members.length > 0 ? (
             <div className="card p-5">
-              <h3 className="font-semibold text-gold mb-3">代表英雄</h3>
+              <h3 className="font-semibold text-gold mb-3">代表英雄 ({faction.members.length})</h3>
               <div className="flex flex-wrap gap-2">
                 {faction.members.map(name => (
-                  <span key={name} className="badge bg-dark-600 text-parchment-dark text-xs border border-gold/15">
-                    {name}
-                  </span>
+                  <span key={name} className="badge bg-dark-600 text-parchment-dark text-xs border border-gold/15">{name}</span>
                 ))}
               </div>
             </div>
-          )}
+          ) : null}
 
           {/* 外交关系 */}
           {(allies.length > 0 || enemies.length > 0) && (
@@ -155,10 +135,7 @@ export default function FactionPage({ params }: Props) {
                 <div className="mb-3">
                   <div className="text-xs text-jade mb-1">同盟阵营</div>
                   {allies.map(a => (
-                    <Link key={a!.id} href={`/factions/${a!.id}`}
-                      className="block text-sm text-parchment hover:text-gold transition-colors p-1">
-                      {a!.name}
-                    </Link>
+                    <Link key={a!.id} href={`/factions/${a!.id}`} className="block text-sm text-parchment hover:text-gold transition-colors p-1">{a!.name}</Link>
                   ))}
                 </div>
               )}
@@ -166,10 +143,7 @@ export default function FactionPage({ params }: Props) {
                 <div>
                   <div className="text-xs text-crimson mb-1">对立阵营</div>
                   {enemies.map(e => (
-                    <Link key={e!.id} href={`/factions/${e!.id}`}
-                      className="block text-sm text-parchment hover:text-gold transition-colors p-1">
-                      {e!.name}
-                    </Link>
+                    <Link key={e!.id} href={`/factions/${e!.id}`} className="block text-sm text-parchment hover:text-gold transition-colors p-1">{e!.name}</Link>
                   ))}
                 </div>
               )}
@@ -184,30 +158,66 @@ export default function FactionPage({ params }: Props) {
           </div>
         </aside>
 
-        {/* 右侧主内容区 */}
+        {/* 右侧主内容区 — 按用户要求顺序排列 */}
         <main className="lg:col-span-2 space-y-6">
-          {/* 阵营简介 */}
-          <div className="card p-6">
-            <h2 className="text-xl font-bold text-gold mb-3">阵营简介</h2>
+
+          {/* ===== 1. 阵营简介 ===== */}
+          <div id="intro" className="card p-6">
+            <h2 className="text-xl font-bold text-gold mb-3 flex items-center gap-2">
+              <span className="w-6 h-6 rounded bg-gold/10 flex items-center justify-center text-xs">①</span>
+              阵营简介
+            </h2>
             <p className="text-parchment leading-relaxed">{faction.description}</p>
           </div>
 
-          {/* 奇迹之力 */}
-          {faction.miracle && (
-            <div className="card p-6 border border-gold/20 bg-gradient-to-r from-dark-800 to-dark-700">
-              <h2 className="text-xl font-bold text-gold mb-3">✦ 奇迹之力</h2>
-              <p className="text-parchment-dark leading-relaxed">{faction.miracle}</p>
+          {/* ===== 2. 详细介绍（content）===== */}
+          {faction.content && (
+            <div id="detail" className="card p-6">
+              <h2 className="text-xl font-bold text-gold mb-3 flex items-center gap-2">
+                <span className="w-6 h-6 rounded bg-gold/10 flex items-center justify-center text-xs">②</span>
+                详细介绍
+              </h2>
+              <p className="text-parchment leading-relaxed whitespace-pre-line">{faction.content}</p>
             </div>
           )}
 
-          {/* 城池/属地详情 */}
+          {/* ===== 3. 奇迹之力（miracle + miracleImages）===== */}
+          {faction.miracle && (
+            <div id="miracle" className="card overflow-hidden border border-gold/20 bg-gradient-to-br from-dark-800 to-dark-700">
+              <div className="px-6 pt-6 pb-2">
+                <h2 className="text-xl font-bold text-gold mb-3 flex items-center gap-2">
+                  <span className="w-6 h-6 rounded bg-gold/10 flex items-center justify-center text-xs">③</span>
+                  ✦ 奇迹之力
+                </h2>
+              </div>
+              {/* 奇迹图片 */}
+              {faction.miracleImages && faction.miracleImages.length > 0 && (
+                <div className={`px-6 pb-4 grid gap-3 ${faction.miracleImages.length === 1 ? 'grid-cols-1' : 'grid-cols-2 lg:grid-cols-3'}`}>
+                  {faction.miracleImages.map((img, i) => (
+                    <div key={i} className="relative rounded-lg overflow-hidden border border-gold/15 bg-dark-900 aspect-video">
+                      <img src={img} alt={`${faction.name} 奇迹 ${i + 1}`}
+                        className="w-full h-full object-cover" />
+                    </div>
+                  ))}
+                </div>
+              )}
+              <div className="px-6 pb-6">
+                <p className="text-parchment leading-relaxed whitespace-pre-line">{faction.miracle}</p>
+              </div>
+            </div>
+          )}
+
+          {/* ===== 4. 城池 / 属地（完整展示）===== */}
           {faction.districts && faction.districts.length > 0 && (
             <div className="space-y-6">
-              <h2 className="text-xl font-bold text-gold">城池 / 属地</h2>
+              <h2 className="text-xl font-bold text-gold flex items-center gap-2">
+                <span className="w-6 h-6 rounded bg-gold/10 flex items-center justify-center text-xs">④</span>
+                城池 / 属地
+              </h2>
               {faction.districts.map((district, idx) => (
                 <div key={district.name} id={`district-${encodeURIComponent(district.name)}`}
                   className="card overflow-hidden">
-                  {/* 城池标题栏 */}
+                  {/* 标题栏 */}
                   <div className="px-6 py-4 border-b border-gold/10 bg-dark-700/50">
                     <div className="flex items-center gap-3">
                       <span className="text-gold/40 text-sm font-mono">{String(idx + 1).padStart(2, '0')}</span>
@@ -216,9 +226,11 @@ export default function FactionPage({ params }: Props) {
                   </div>
 
                   <div className="p-6 space-y-5">
-                    {/* 城池描述 */}
+                    {/* 城池完整描述（支持多段落） */}
                     {district.description && (
-                      <p className="text-parchment-dark leading-relaxed text-sm">{district.description}</p>
+                      <div className="text-parchment-dark leading-relaxed text-sm whitespace-pre-line">
+                        {district.description}
+                      </div>
                     )}
 
                     {/* 城池图片 */}
@@ -241,10 +253,10 @@ export default function FactionPage({ params }: Props) {
                           <span>区域分布</span>
                           <span className="flex-1 h-px bg-gold/10" />
                         </div>
-                        <div className="grid grid-cols-1 gap-4">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                           {district.areas.map(area => (
                             <div key={area.name} className="rounded-lg border border-gold/10 bg-dark-800/50 overflow-hidden">
-                              {/* 子区域图片（如有） */}
+                              {/* 子区域图片 */}
                               {area.images && area.images.length > 0 && (
                                 <div className={`grid gap-1 ${area.images.length === 1 ? 'grid-cols-1' : 'grid-cols-2'}`}>
                                   {area.images.map((img, i) => (
@@ -255,7 +267,6 @@ export default function FactionPage({ params }: Props) {
                                   ))}
                                 </div>
                               )}
-                              {/* 子区域文字 */}
                               <div className="p-4">
                                 <h4 className="text-sm font-semibold text-parchment mb-1.5">{area.name}</h4>
                                 {area.description && (
@@ -270,13 +281,6 @@ export default function FactionPage({ params }: Props) {
                   </div>
                 </div>
               ))}
-            </div>
-          )}
-
-          {contentHtml && (
-            <div className="card p-6">
-              <h2 className="text-xl font-bold text-gold mb-4">详细介绍</h2>
-              <div className="lore-content" dangerouslySetInnerHTML={{ __html: contentHtml }} />
             </div>
           )}
         </main>

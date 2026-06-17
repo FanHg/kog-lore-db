@@ -3,7 +3,7 @@
   "name": "三分之地",
   "type": "region",
   "description": "王者大陆东南部的割据之地，魏都、江郡、益城三足鼎立。枭雄曹操雄踞魏都图谋统一，江郡依海而兴商贸繁荣，益城盛产机关术是工匠天堂。",
-  "content": "三分之地是王者大陆东南部的核心区域，三国鼎立，各有特色。魏都地处枢纽富庶强悍，大权在握的曹操怀有吞并三国的野望；江郡临海而建船运发达，曾远航大陆西面；益城矿藏丰富盛产机关术，各类机关造物深入人们生活。",
+  "content": "三分之地位于王者大陆中原腹地，分为魏都、江郡、益城三国势力范围。魏都以枭雄曹操为首的铁血霸业，江郡的海洋贸易与享乐文化，益城的机关术与任侠精神，共同构成这片土地上独特的历史画卷。",
   "districts": [
     {
       "name": "魏都",
@@ -21,7 +21,7 @@
       "images": []
     }
   ],
-  "miracle": "",
+  "miracle": null,
   "leader": null,
   "members": [],
   "allies": [],
@@ -35,5 +35,8 @@
     "机关术",
     "商贸"
   ],
-  "imageUrl": "/images/factions/sanfen.jpg"
+  "imageUrl": "/images/factions/sanfen.jpg",
+  "miracleImages": [
+    "/images/factions/districts/7752fafe.png"
+  ]
 }
