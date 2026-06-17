@@ -124,10 +124,19 @@ export interface TimelineEntry {
   color?: string;    // 纪元颜色 (hex)
 }
 
+// ---------- 区域详情 Area ----------
+export interface Area {
+  name: string;         // 区域名称
+  description: string;  // 区域详情描述
+  images?: string[];    // 区域图片URL列表
+}
+
 // ---------- 城池/属地 District ----------
 export interface District {
   name: string;         // 城池/属地名称
-  description: string;  // 简介
+  description: string;  // 完整介绍
+  images?: string[];    // 城池图片URL列表
+  areas?: Area[];       // 子区域详情列表
 }
 
 // ---------- 阵营 Faction ----------
