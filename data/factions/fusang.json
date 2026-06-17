@@ -4,8 +4,15 @@
   "type": "region",
   "description": "大陆东面最大的岛屿，生活着异民族。他们的习俗和文化都受到大陆深远的影响，并与东海岸有着往来贸易。学子和僧侣也曾远道前往稷下和长安求学。但一场瘟疫令其元气大伤，之后来自西方的异乡人也乘坐船只登陆。扶桑的未来陷入扑朔迷离。",
   "content": "扶桑是大陆东面最大的岛屿，生活着异民族。他们的习俗和文化都受到大陆深远的影响，并与东海岸有着往来贸易。学子和僧侣也曾远道前往稷下和长安求学。但一场瘟疫令其元气大伤，之后来自西方的异乡人也乘坐船只登陆。扶桑的未来陷入扑朔迷离。",
-  "districts": [],
-  "miracle": null,
+  "miracle": "",
+  "miracleImages": [],
+  "districts": [
+    {
+      "name": "扶桑",
+      "description": "大陆东面最大的岛屿，生活着异民族。他们的习俗和文化都受到大陆深远的影响，并与东海岸有着往来贸易。学子和僧侣也曾远道前往稷下和长安求学。但一场瘟疫令其元气大伤，之后来自西方的异乡人也乘坐船只登陆。扶桑的未来陷入扑朔迷离。",
+      "images": []
+    }
+  ],
   "leader": null,
   "members": [],
   "allies": [],
@@ -19,8 +26,5 @@
     "瘟疫",
     "海外"
   ],
-  "imageUrl": "/images/factions/fusang.jpg",
-  "miracleImages": [
-    "/images/factions/districts/edaf5dbd.png"
-  ]
+  "imageUrl": "/images/factions/fusang.jpg"
 }
