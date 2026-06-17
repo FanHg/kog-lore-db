@@ -124,6 +124,12 @@ export interface TimelineEntry {
   color?: string;    // 纪元颜色 (hex)
 }
 
+// ---------- 城池/属地 District ----------
+export interface District {
+  name: string;         // 城池/属地名称
+  description: string;  // 简介
+}
+
 // ---------- 阵营 Faction ----------
 export interface Faction {
   id: string;
@@ -131,8 +137,10 @@ export interface Faction {
   type: FactionType;
   description: string;
   content: string;       // 完整介绍 (Markdown)
+  districts?: District[]; // 城池/属地列表
+  miracle?: string;      // 奇迹之力描述
   leader?: string;       // 领袖英雄 ID
-  members: string[];     // 成员英雄 ID
+  members: string[];     // 成员英雄 ID（英雄名称列表）
   allies: string[];      // 同盟阵营 ID
   enemies: string[];     // 敌对阵营 ID
   location?: string;     // 主要地点 ID
@@ -147,7 +155,8 @@ export type FactionType =
   | 'clan'         // 氏族
   | 'race'         // 种族
   | 'religion'     // 宗教
-  | 'army';        // 军队
+  | 'army'         // 军队
+  | 'region';      // 地区/阵营
 
 export type FactionStatus = 'active' | 'destroyed' | 'merged' | 'dormant' | 'unknown';
 
