@@ -48,11 +48,13 @@ export default function QuotesPage() {
                     {quote.context && (
                       <p className="text-parchment-dark text-xs mt-1 ml-2">—— {quote.context}</p>
                     )}
-                    <div className="flex gap-1 mt-2">
-                      <span className="badge bg-dark-500 text-parchment-dark text-xs border border-gold/10">
-                        {quote.type}
-                      </span>
-                      {quote.tags.map(tag => (
+                    <div className="flex gap-1 mt-2 flex-wrap">
+                      {quote.type && (
+                        <span className="badge bg-dark-500 text-parchment-dark text-xs border border-gold/10">
+                          {quote.type}
+                        </span>
+                      )}
+                      {(quote.tags || []).map(tag => (
                         <span key={tag} className="badge bg-dark-600 text-parchment-dark text-xs border border-gold/5">
                           #{tag}
                         </span>
