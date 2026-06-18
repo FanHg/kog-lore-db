@@ -313,5 +313,14 @@
     "description": "三贤者之一，钟无艳偷空过三贤者的积蓄",
     "bidirectional": true,
     "strength": 0.5
+  },
+  {
+    "id": "rel-laofuzi-yao",
+    "sourceId": "laofuzi",
+    "targetId": "yao",
+    "type": "teacher",
+    "description": "老夫子是曜的老师之一，稷下三贤之一",
+    "bidirectional": true,
+    "strength": 0.5
   }
 ]

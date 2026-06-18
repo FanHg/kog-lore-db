@@ -41,6 +41,11 @@
       "targetId": "jixiaoman",
       "type": "guardian",
       "description": "姬小满被托付给老夫子，夫子将她当做亲孙女一般关照"
+    },
+    {
+      "targetId": "yao",
+      "type": "teacher",
+      "description": "老夫子是曜的老师之一，稷下三贤之一"
     }
   ],
   "voiceLines": {

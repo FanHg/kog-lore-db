@@ -18,6 +18,7 @@
   "relations": [
     {"targetId": "jing", "type": "sibling", "description": "曜与镜是姐弟，从小争夺第一，在环中梦竞赛中曜终于战胜了姐姐"},
     {"targetId": "zhuangzhou", "type": "teacher", "description": "庄周是曜的老师，举办了归虚梦演"},
+    {"targetId": "laofuzi", "type": "teacher", "description": "老夫子是曜的老师之一，稷下三贤之一"},
     {"targetId": "xishi", "type": "teammate", "description": "星之队队友，一同参加归虚梦演"},
     {"targetId": "mengya", "type": "teammate", "description": "星之队队友，一同参加归虚梦演"},
     {"targetId": "sunbin", "type": "teammate", "description": "星之队队友，曜在危难中率队救出了孙膑"},
