@@ -292,8 +292,8 @@ export interface GraphEdge {
   source: string;
   target: string;
   type: RelationType;
-  label: string;
-  strength: number;
+  strength?: number;
+  label?: string;
 }
 
 export interface GraphData {

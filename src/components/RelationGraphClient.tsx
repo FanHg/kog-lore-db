@@ -18,7 +18,7 @@ function layoutNodes(nodes: GraphNode[]): GraphNode[] {
   const cy = HEIGHT / 2;
   const r = Math.min(WIDTH, HEIGHT) / 2 - NODE_RADIUS - 20;
 
-  return nodes.map((node, i) => {
+  return nodes.map((node, i: number) => {
     const angle = (i / nodes.length) * 2 * Math.PI - Math.PI / 2;
     return {
       ...node,
