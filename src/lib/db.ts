@@ -145,25 +145,7 @@ export const relationDb = {
   },
   getGraphData(): GraphData {
     const heroes = heroDb.getAll();
-
-    // 从每个英雄的 relations 字段聚合所有关系
-    const edgeSet = new Map<string, GraphEdge>();
-    for (const hero of heroes) {
-      if (!hero.relations) continue;
-      for (const rel of hero.relations) {
-        // 用 source+target 排序后拼 key，避免重复（A->B 和 B->A 是同一条）
-        const key = [rel.targetId, hero.id].sort().join('::');
-        if (!edgeSet.has(key)) {
-          edgeSet.set(key, {
-            source: hero.id,
-            target: rel.targetId,
-            type: rel.type,
-            strength: 0.5,
-            label: rel.description || '',
-          });
-        }
-      }
-    }
+    const relations = this.getAll();
 
     const nodes: GraphNode[] = heroes.map(h => ({
       id: h.id,
@@ -172,7 +154,13 @@ export const relationDb = {
       group: h.faction,
     }));
 
-    const edges: GraphEdge[] = Array.from(edgeSet.values());
+    const edges: GraphEdge[] = relations.map(r => ({
+      source: r.sourceId,
+      target: r.targetId,
+      type: r.type,
+      label: r.description || '',
+      strength: r.strength || 0.5,
+    }));
 
     return { nodes, edges };
   },

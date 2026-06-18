@@ -1,1 +1,317 @@
-[]
+[
+  {
+    "id": "rel-jiangziya-laofuzi",
+    "sourceId": "jiangziya",
+    "targetId": "laofuzi",
+    "type": "former_friend",
+    "description": "曾一同踏上问神之路成为最初神职者，后因理念分歧决裂",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-jiangziya-jixiaoman",
+    "sourceId": "jiangziya",
+    "targetId": "jixiaoman",
+    "type": "connection",
+    "description": "姬小满曾从老夫子口中听闻姜子牙的传奇故事",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-jing-yao",
+    "sourceId": "jing",
+    "targetId": "yao",
+    "type": "sibling",
+    "description": "镜是曜的姐姐，从小严苛对待弟弟，两人在环中梦竞赛中对决",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-jing-mengtian",
+    "sourceId": "jing",
+    "targetId": "mengtian",
+    "type": "superior",
+    "description": "镜是蒙恬麾下的阴曲情报专员",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-jing-laofuzi",
+    "sourceId": "jing",
+    "targetId": "laofuzi",
+    "type": "teacher",
+    "description": "老夫子指引镜得知万镜之厅的存在",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-jing-mengya",
+    "sourceId": "jing",
+    "targetId": "mengya",
+    "type": "comrade",
+    "description": "蒙犽与镜一同成为蒙恬麾下见习士兵",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-jixiaoman-laofuzi",
+    "sourceId": "jixiaoman",
+    "targetId": "laofuzi",
+    "type": "guardian",
+    "description": "被父亲托付给老夫子，夫子将她当做亲孙女关照",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-jixiaoman-mengtian",
+    "sourceId": "jixiaoman",
+    "targetId": "mengtian",
+    "type": "connection",
+    "description": "蒙恬认识姬小满的父亲，也关照小满",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-jixiaoman-zhuangzhou",
+    "sourceId": "jixiaoman",
+    "targetId": "zhuangzhou",
+    "type": "teacher",
+    "description": "庄周鼓励小满前往海都完成母亲遗愿",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-laofuzi-mozi",
+    "sourceId": "laofuzi",
+    "targetId": "mozi",
+    "type": "colleague",
+    "description": "稷下三贤者之一，共同管理学院",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-laofuzi-zhuangzhou",
+    "sourceId": "laofuzi",
+    "targetId": "zhuangzhou",
+    "type": "colleague",
+    "description": "稷下三贤者之一，共同管理学院",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-lianpo-zhongwuyan",
+    "sourceId": "lianpo",
+    "targetId": "zhongwuyan",
+    "type": "friend",
+    "description": "钟无艳曾打劫甘丹部族，两人不打不相识",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-lianpo-lubandashi",
+    "sourceId": "lianpo",
+    "targetId": "lubandashi",
+    "type": "connection",
+    "description": "鲁班大师为廉颇改造了新的拳甲",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-lianpo-yao",
+    "sourceId": "lianpo",
+    "targetId": "yao",
+    "type": "friend",
+    "description": "廉颇与曜在观星台比武后成为忘年交",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-lubandashi-lubanqihao",
+    "sourceId": "lubandashi",
+    "targetId": "lubanqihao",
+    "type": "creator",
+    "description": "鲁班七号是鲁班大师创造的具有生命力的机关造物",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-lubandashi-sunbin",
+    "sourceId": "lubandashi",
+    "targetId": "sunbin",
+    "type": "benefactor",
+    "description": "为孙膑研究并改造了更耐用更智能的机关翼",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-lubandashi-mozi",
+    "sourceId": "lubandashi",
+    "targetId": "mozi",
+    "type": "rival",
+    "description": "与墨子不分伯仲的机关天才",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-lubandashi-yao",
+    "sourceId": "lubandashi",
+    "targetId": "yao",
+    "type": "teammate",
+    "description": "星之队队友",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-lubanqihao-xishi",
+    "sourceId": "lubanqihao",
+    "targetId": "xishi",
+    "type": "connection",
+    "description": "西施曾捡到走丢的鲁班七号并试图倒卖",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-mengtian-mengya",
+    "sourceId": "mengtian",
+    "targetId": "mengya",
+    "type": "parent",
+    "description": "蒙恬是蒙犽的父亲，父子理念不合但互相关心",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-mengtian-laofuzi",
+    "sourceId": "mengtian",
+    "targetId": "laofuzi",
+    "type": "connection",
+    "description": "蒙恬追子到稷下，与老夫子商议蒙犽入学事宜",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-mengtian-mozi",
+    "sourceId": "mengtian",
+    "targetId": "mozi",
+    "type": "connection",
+    "description": "墨子将蒙犽划入机关学院",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-mengya-yao",
+    "sourceId": "mengya",
+    "targetId": "yao",
+    "type": "teammate",
+    "description": "星之队队友",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-mengya-lubandashi",
+    "sourceId": "mengya",
+    "targetId": "lubandashi",
+    "type": "teammate",
+    "description": "星之队队友",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-mozi-zhuangzhou",
+    "sourceId": "mozi",
+    "targetId": "zhuangzhou",
+    "type": "colleague",
+    "description": "稷下三贤者之一",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-mozi-sunbin",
+    "sourceId": "mozi",
+    "targetId": "sunbin",
+    "type": "benefactor",
+    "description": "墨子救出了失去双腿的孙膑",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-sunbin-yao",
+    "sourceId": "sunbin",
+    "targetId": "yao",
+    "type": "teammate",
+    "description": "星之队队长，率队救出了被困废墟的孙膑",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-sunbin-xishi",
+    "sourceId": "sunbin",
+    "targetId": "xishi",
+    "type": "teammate",
+    "description": "星之队队友",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-xishi-yao",
+    "sourceId": "xishi",
+    "targetId": "yao",
+    "type": "teammate",
+    "description": "星之队队友",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-xishi-mengya",
+    "sourceId": "xishi",
+    "targetId": "mengya",
+    "type": "teammate",
+    "description": "星之队队友",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-xishi-zhuangzhou",
+    "sourceId": "xishi",
+    "targetId": "zhuangzhou",
+    "type": "teacher",
+    "description": "庄周救了西施并带她来到稷下",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-xishi-lubandashi",
+    "sourceId": "xishi",
+    "targetId": "lubandashi",
+    "type": "teammate",
+    "description": "星之队队友",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-yao-zhuangzhou",
+    "sourceId": "yao",
+    "targetId": "zhuangzhou",
+    "type": "teacher",
+    "description": "庄周是曜的老师，举办了归虚梦演",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-zhongwuyan-laofuzi",
+    "sourceId": "zhongwuyan",
+    "targetId": "laofuzi",
+    "type": "teacher",
+    "description": "夫子多次包容钟无艳的出格行为",
+    "bidirectional": true,
+    "strength": 0.5
+  },
+  {
+    "id": "rel-zhongwuyan-mozi",
+    "sourceId": "zhongwuyan",
+    "targetId": "mozi",
+    "type": "teacher",
+    "description": "三贤者之一，钟无艳偷空过三贤者的积蓄",
+    "bidirectional": true,
+    "strength": 0.5
+  }
+]
