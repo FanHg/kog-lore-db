@@ -59,5 +59,8 @@
   "imageUrl": "/images/heroes/laofuzi.jpg",
   "avatarUrl": "/images/heroes/laofuzi_avatar.jpg",
   "createdAt": "2024-01-01T00:00:00Z",
-  "updatedAt": "2026-06-16T00:00:00Z"
+  "updatedAt": "2026-06-18T00:00:00Z",
+  "participatedEvents": [
+    "qiji-qidian"
+  ]
 }

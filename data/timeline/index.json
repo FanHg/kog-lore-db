@@ -6,7 +6,9 @@
     "period": "太古时代",
     "order": 1,
     "color": "#D4A017",
-    "events": ["houyi-shoots-suns"],
+    "events": [
+      "houyi-shoots-suns"
+    ],
     "description": "混沌初开，天地分离，神祇降临，人类诞生。这是所有故事的起点，诸神与人类在天地间各寻其位，秩序与混乱的第一次碰撞在这个时代埋下了伏笔。"
   },
   {
@@ -16,15 +18,29 @@
     "period": "约五千年前至三千年前",
     "order": 2,
     "color": "#C02030",
-    "events": ["great-demon-war"],
+    "events": [
+      "great-demon-war"
+    ],
     "description": "神界与魔界的冲突达到顶峰，修罗道大军数度入侵人间，英雄们在这个时代中登上历史舞台，用鲜血与信念守护着摇摇欲坠的人间秩序。"
+  },
+  {
+    "id": "shenyun-era",
+    "era": "神陨纪元",
+    "name": "神陨之战·奇迹司成立",
+    "period": "约一千年前",
+    "order": 3,
+    "color": "#7B2D8B",
+    "events": [
+      "shenyun-zhizhan"
+    ],
+    "description": "一千年前，大神女娲与帝俊在古云中爆发神陨之战，两位神明齐齐陨落，神明时代终结。女娲的神职者们继承神明遗志，成立奇迹事务司，开启了人类独自守护世界的新纪元。"
   },
   {
     "id": "human-age",
     "era": "人文时代",
     "name": "王朝建立",
     "period": "约三千年前至一千年前",
-    "order": 3,
+    "order": 4,
     "color": "#1A8A5A",
     "events": [],
     "description": "神祇逐渐隐退，人类文明开始独立发展。长安城崛起为天下中心，各路英豪在这个时代中为国家与信仰而战，人类历史上最辉煌的王朝在这一时期诞生。"
@@ -34,7 +50,7 @@
     "era": "乱世时代",
     "name": "诸雄并起",
     "period": "约一千年前至五百年前",
-    "order": 4,
+    "order": 5,
     "color": "#8A4080",
     "events": [],
     "description": "旧王朝衰落，新势力崛起，天下陷入战乱。修罗道趁机卷土重来，各阵营在乱世中寻找自己的出路，无数英雄在这个时代选择了不同的道路。"
@@ -42,11 +58,17 @@
   {
     "id": "current-age",
     "era": "当世",
-    "name": "英雄辈出",
+    "name": "英雄辈出·奇迹复兴",
     "period": "约五百年前至今",
-    "order": 5,
+    "order": 6,
     "color": "#1A5A8A",
-    "events": [],
-    "description": "当下的王者大陆，局势错综复杂。各阵营在新一轮的博弈中重新排列组合，古老的预言开始应验，新的英雄故事正在书写之中。"
+    "events": [
+      "qiji-qidian",
+      "yunzhuan-qifeng",
+      "luzhong-yunzhuan",
+      "dengtian-zhizhi",
+      "fengbao-jianxi"
+    ],
+    "description": "蛰伏已久的\"朔\"再次启动复活计划，以夫子为首的奇迹事务司组建全新的\"第一行动小队\"应对危机。少年们追寻云篆仪的下落，阻止魔神帝俊复活，共同踏上守护世界的征途。永夜的月辉与拂晓的晨曦，谁又将在英雄的时代闪耀？"
   }
 ]
