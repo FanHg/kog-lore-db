@@ -2,7 +2,7 @@
 
 ## 基础信息
 
-- **Base URL**: `https://your-domain.vercel.app/api`
+- **Base URL**: `https://kog-lore-db.top/api`
 - **Content-Type**: `application/json`
 - **认证**: 无需认证，完全公开
 - **CORS**: 已开启，允许所有来源
