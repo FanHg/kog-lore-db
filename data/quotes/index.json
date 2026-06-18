@@ -113,7 +113,7 @@
     "id": "quote-xishi-011",
     "heroId": "xishi",
     "heroName": "西施",
-    "text": "常说的话：最有价值之物，给最珍贵之人",
+    "text": 最有价值之物，给最珍贵之人,
     "type": "移动语音",
     "tags": [
       "西施",
@@ -278,7 +278,7 @@
     "id": "quote-jixiaoman-026",
     "heroId": "jixiaoman",
     "heroName": "姬小满",
-    "text": "常说的话：化万物变法，我自成武道",
+    "text": "化万物变法，我自成武道",
     "type": "移动语音",
     "tags": [
       "姬小满",
@@ -333,7 +333,7 @@
     "id": "quote-sunbin-031",
     "heroId": "sunbin",
     "heroName": "孙膑",
-    "text": "常说的话：想回到过去，也想去未来瞅瞅路?也许我要去的地方不需要路",
+    "text": "想回到过去，也想去未来瞅瞅路?也许我要去的地方不需要路",
     "type": "移动语音",
     "tags": [
       "孙膑",
@@ -718,7 +718,7 @@
     "id": "quote-lianpo-066",
     "heroId": "lianpo",
     "heroName": "廉颇",
-    "text": "常说的话：不屈的灵魂，不灭的斗志，不老的心",
+    "text": "不屈的灵魂，不灭的斗志，不老的心",
     "type": "移动语音",
     "tags": [
       "廉颇",
