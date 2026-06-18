@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { heroDb, factionDb, quoteDb, eventDb, relationDb } from '@/lib/db';
-import { RELATION_LABELS, RELATION_COLORS, ROLE_COLORS, BASE_URL, SITE_CONFIG } from '@/lib/utils';
+import { RELATION_LABELS, RELATION_COLORS, ROLE_COLORS, BASE_URL, SITE_CONFIG, linkifyLoreHtml } from '@/lib/utils';
 import { marked } from 'marked';
 
 interface Props {
@@ -36,7 +36,11 @@ export default function HeroPage({ params }: Props) {
   const events = eventDb.getByParticipant(hero.id);
   const relations = relationDb.getByHeroId(hero.id);
 
-  const loreHtml = marked(hero.lore, { breaks: true, gfm: true }) as string;
+  const loreHtmlRaw = marked(hero.lore, { breaks: true, gfm: true }) as string;
+  // Auto-link hero names and faction names in lore content
+  const allHeroes = heroDb.getAll().map(h => ({ id: h.id, name: h.name }));
+  const allFactions = factionDb.getAll().map(f => ({ id: f.id, name: f.name }));
+  const loreHtml = linkifyLoreHtml(loreHtmlRaw, allHeroes, allFactions);
 
   // Get related hero names for display
   const relatedHeroes = hero.relations.map(r => ({

@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { factionDb, heroDb, locationDb } from '@/lib/db';
+import { linkifyLoreHtml } from '@/lib/utils';
 
 interface Props {
   params: { slug: string };
@@ -32,6 +33,11 @@ export default function FactionPage({ params }: Props) {
   const allies = faction.allies.map(id => factionDb.getById(id)).filter(Boolean);
   const enemies = faction.enemies.map(id => factionDb.getById(id)).filter(Boolean);
   const location = faction.location ? locationDb.getById(faction.location) : null;
+
+  // Auto-link names in content/description
+  const allHeroesForLink = heroDb.getAll().map(h => ({ id: h.id, name: h.name }));
+  const allFactionsForLink = factionDb.getAll().map(f => ({ id: f.id, name: f.name }));
+  const linkify = (text: string) => linkifyLoreHtml(text, allHeroesForLink, allFactionsForLink);
 
   return (
     <>
@@ -97,32 +103,25 @@ export default function FactionPage({ params }: Props) {
           </div>
 
           {/* 代表英雄 */}
-          {memberHeroes.length > 0 ? (
-            <div className="card p-5">
-              <h3 className="font-semibold text-gold mb-3">代表英雄 ({memberHeroes.length})</h3>
-              <div className="space-y-2">
-                {memberHeroes.map(hero => (
-                  <Link key={hero!.id} href={`/heroes/${hero!.id}`}
-                    className="flex items-center gap-2 p-2 rounded hover:bg-dark-600 transition-colors">
-                    {hero!.avatarUrl && (
-                      <img src={hero!.avatarUrl} alt={hero!.name}
-                        className="w-8 h-8 rounded-full object-cover border border-gold/20" />
-                    )}
-                    <div>
-                      <span className="text-parchment text-sm font-medium">{hero!.name}</span>
-                      {hero!.title && <div className="text-xs text-parchment-dark">{hero!.title}</div>}
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          ) : faction.members.length > 0 ? (
+          {faction.members.length > 0 ? (
             <div className="card p-5">
               <h3 className="font-semibold text-gold mb-3">代表英雄 ({faction.members.length})</h3>
               <div className="flex flex-wrap gap-2">
-                {faction.members.map(name => (
-                  <span key={name} className="badge bg-dark-600 text-parchment-dark text-xs border border-gold/15">{name}</span>
-                ))}
+                {faction.members.map(name => {
+                  const hero = heroDb.getById(name) || heroDb.getByName(name);
+                  return hero ? (
+                    <Link key={name} href={`/heroes/${hero.id}`}
+                      className="badge bg-dark-600 hover:bg-gold/20 text-parchment-dark hover:text-gold text-xs border border-gold/15 hover:border-gold/40 transition-colors cursor-pointer">
+                      {hero.avatarUrl && (
+                        <img src={hero.avatarUrl} alt={hero.name}
+                          className="w-5 h-5 rounded-full object-cover inline-block mr-1 -ml-0.5 align-middle" />
+                      )}
+                      {hero.name}
+                    </Link>
+                  ) : (
+                    <span key={name} className="badge bg-dark-600 text-parchment-dark text-xs border border-gold/15">{name}</span>
+                  );
+                })}
               </div>
             </div>
           ) : null}
@@ -167,7 +166,9 @@ export default function FactionPage({ params }: Props) {
               <span className="w-6 h-6 rounded bg-gold/10 flex items-center justify-center text-xs">①</span>
               阵营简介
             </h2>
-            <p className="text-parchment leading-relaxed">{faction.description}</p>
+            <div className="text-parchment leading-relaxed"
+              dangerouslySetInnerHTML={{ __html: linkify(faction.description) }}
+            />
           </div>
 
           {/* ===== 2. 详细介绍（content）===== */}
@@ -177,7 +178,9 @@ export default function FactionPage({ params }: Props) {
                 <span className="w-6 h-6 rounded bg-gold/10 flex items-center justify-center text-xs">②</span>
                 详细介绍
               </h2>
-              <p className="text-parchment leading-relaxed whitespace-pre-line">{faction.content}</p>
+              <div className="text-parchment leading-relaxed whitespace-pre-line"
+                dangerouslySetInnerHTML={{ __html: linkify(faction.content) }}
+              />
             </div>
           )}
 
@@ -237,11 +240,23 @@ export default function FactionPage({ params }: Props) {
                     {district.representHeroes && district.representHeroes.length > 0 && (
                       <div className="flex flex-wrap items-center gap-2">
                         <span className="text-xs text-gold/60 shrink-0">代表英雄</span>
-                        {district.representHeroes.map((hero, hi) => (
-                          <span key={hi} className="inline-block px-2 py-0.5 text-xs rounded bg-gold/10 text-gold/90 border border-gold/20">
-                            {hero}
-                          </span>
-                        ))}
+                        {district.representHeroes.map((heroName, hi) => {
+                          const hero = heroDb.getById(heroName) || heroDb.getByName(heroName);
+                          return hero ? (
+                            <Link key={hi} href={`/heroes/${hero.id}`}
+                              className="inline-block px-2 py-0.5 text-xs rounded bg-gold/10 text-gold/90 border border-gold/20 hover:bg-gold/20 hover:text-gold hover:border-gold/40 transition-colors cursor-pointer">
+                              {hero.avatarUrl && (
+                                <img src={hero.avatarUrl} alt={hero.name}
+                                  className="w-5 h-5 rounded-full object-cover inline-block mr-1 -ml-0.5 align-middle" />
+                              )}
+                              {hero.name}
+                            </Link>
+                          ) : (
+                            <span key={hi} className="inline-block px-2 py-0.5 text-xs rounded bg-gold/10 text-gold/90 border border-gold/20">
+                              {heroName}
+                            </span>
+                          );
+                        })}
                       </div>
                     )}
 

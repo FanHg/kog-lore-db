@@ -165,3 +165,92 @@ export const SITE_CONFIG = {
   author: 'KOG Lore DB',
   twitterHandle: '@KOGLoreDB',
 };
+
+// ============================================================
+// Auto-link lore content: replace hero/faction names with <a> links
+// ============================================================
+
+/**
+ * Build a regex that matches hero/faction names in HTML text,
+ * but NOT inside existing <a> tags or HTML attributes.
+ * Names are sorted by length descending to match longer names first.
+ */
+export function autoLinkLoreContent(
+  html: string,
+  heroNames: { id: string; name: string }[],
+  factionNames: { id: string; name: string }[],
+): string {
+  // Collect all names with their link targets
+  const entries: { name: string; replacement: string }[] = [
+    ...heroNames.map(h => ({
+      name: h.name,
+      replacement: `<a href="/heroes/${h.id}" class="text-gold hover:text-gold-light underline underline-offset-2 decoration-gold/40 hover:decoration-gold transition-colors">${h.name}</a>`,
+    })),
+    ...factionNames.map(f => ({
+      name: f.name,
+      replacement: `<a href="/factions/${f.id}" class="text-gold hover:text-gold-light underline underline-offset-2 decoration-gold/40 hover:decoration-gold transition-colors">${f.name}</a>`,
+    })),
+  ];
+
+  // Sort by name length descending to avoid partial matches
+  entries.sort((a, b) => b.name.length - a.name.length);
+
+  let result = html;
+
+  for (const entry of entries) {
+    // Escape special regex characters in the name
+    const escaped = entry.name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    // Match the name only when it's NOT already inside an <a> tag
+    // Negative lookbehind for "> and negative lookahead for <
+    // This is a simplified approach: we process text nodes by
+    // temporarily protecting <a> content
+    const regex = new RegExp(`(?![^<]*>)(?!<a[^>]*>)${escaped}`, 'g');
+    
+    // More robust: use a callback to skip replacements inside tags
+    result = result.replace(regex, entry.replacement);
+  }
+
+  return result;
+}
+
+/**
+ * Safer version: process text nodes only by parsing with DOM-like approach.
+ * For use in server components where we can't use DOM APIs,
+ * we use a simple tag-aware replacement.
+ */
+export function linkifyLoreHtml(
+  html: string,
+  heroNames: { id: string; name: string }[],
+  factionNames: { id: string; name: string }[],
+): string {
+  // Build replacement map sorted by length desc
+  const entries = [
+    ...heroNames.map(h => ({ name: h.name, replace: `<a href="/heroes/${h.id}" class="text-gold hover:text-gold-light underline underline-offset-2 decoration-gold/40 hover:decoration-gold transition-colors">${h.name}</a>` })),
+    ...factionNames.map(f => ({ name: f.name, replace: `<a href="/factions/${f.id}" class="text-gold hover:text-gold-light underline underline-offset-2 decoration-gold/40 hover:decoration-gold transition-colors">${f.name}</a>` })),
+  ].sort((a, b) => b.name.length - a.name.length);
+
+  // Split by HTML tags, only process text segments
+  // Pattern: capture either an HTML tag or a text segment
+  const tokenPattern = /(<\/?[^>]+>)/g;
+  const tokens = html.split(tokenPattern);
+
+  const processed = tokens.map(token => {
+    // If this token is an HTML tag, don't process it
+    if (/^<\/?[^>]+>$/.test(token)) return token;
+    // Process text token: replace names with links
+    let text = token;
+    for (const entry of entries) {
+      // Skip very short names (<=1 char) to avoid noise
+      if (entry.name.length <= 1) continue;
+      const regex = new RegExp(`(?![^<]*>)${escapeRegex(entry.name)}`, 'g');
+      text = text.replace(regex, entry.replace);
+    }
+    return text;
+  });
+
+  return processed.join('');
+}
+
+function escapeRegex(str: string): string {
+  return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}

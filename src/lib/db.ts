@@ -55,6 +55,9 @@ export const heroDb = {
   getById(id: string): Hero | null {
     return readJsonFile<Hero>(path.join(DATA_DIR, 'heroes', `${id}.json`));
   },
+  getByName(name: string): Hero | null {
+    return this.getAll().find(h => h.name === name) || null;
+  },
   getByFaction(factionId: string): Hero[] {
     return this.getAll().filter(h => h.faction === factionId);
   },
