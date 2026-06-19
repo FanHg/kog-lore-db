@@ -12,3 +12,4 @@ export async function GET() {
     return NextResponse.json(apiError('Failed to fetch projects', 500), { status: 500 });
   }
 }
+// cache-bust: force recompile
