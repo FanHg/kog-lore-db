@@ -247,7 +247,7 @@ export const regionDb = {
 // ---------- 故事节点 Story Nodes ----------
 export const storyNodeDb = {
   getAll(): StoryNode[] {
-    return readV3Dir<StoryNode>('story-node');
+    return readV3Dir<StoryNode>('story-nodes');
   },
   getById(id: string): StoryNode | null {
     return this.getAll().find(n => n.id === id) || null;
