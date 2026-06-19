@@ -1,0 +1,39 @@
+[
+  {
+    "id": "memory_001",
+    "type": "rule",
+    "content": "项目规则：KPL官方AI短剧必须采用王者荣耀官方世界观，不添加IF线（假设/架空剧情）。所有内容基于官方设定，不得自由编造。",
+    "source": "project_kpl_short_drama",
+    "confidence": 1.0,
+    "projectId": "project_kpl_short_drama",
+    "createdAt": "2024-05-20T00:00:00Z",
+    "updatedAt": "2024-06-18T00:00:00Z",
+    "tags": ["规则", "项目约束"],
+    "accessCount": 15
+  },
+  {
+    "id": "memory_002",
+    "type": "rule",
+    "content": "平台规则：单集视频时长控制在90秒以内，优先适配抖音平台。B站可放宽至120秒。小红书需要竖版封面。",
+    "source": "project_kpl_short_drama",
+    "confidence": 1.0,
+    "projectId": "project_kpl_short_drama",
+    "createdAt": "2024-05-20T00:00:00Z",
+    "updatedAt": "2024-06-18T00:00:00Z",
+    "tags": ["规则", "平台约束"],
+    "accessCount": 12
+  },
+  {
+    "id": "memory_003",
+    "type": "fact",
+    "content": "事实记忆：曜（hero_yao）与镜（hero_jing）为姐弟关系。镜是曜的姐姐，担任守护者角色。曜为星辰之子，性格张扬自信。两人在稷下学院首次相遇时充满冲突。",
+    "source": "英雄数据",
+    "confidence": 1.0,
+    "heroIds": ["hero_yao", "hero_jing"],
+    "projectId": "project_kpl_short_drama",
+    "createdAt": "2024-05-20T00:00:00Z",
+    "updatedAt": "2024-06-18T00:00:00Z",
+    "tags": ["事实", "关系", "曜", "镜"],
+    "accessCount": 20
+  }
+]

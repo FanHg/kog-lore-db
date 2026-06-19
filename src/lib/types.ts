@@ -1,6 +1,6 @@
 // ============================================================
-// 王者荣耀世界观数据库 - 完整类型定义
-// Honor of Kings Lore Database - Complete Type Definitions
+// 王者荣耀世界观数据库 - 完整类型定义 (V3)
+// Honor of Kings Lore Database - Complete Type Definitions (V3)
 // ============================================================
 
 // ---------- 英雄 Hero ----------
@@ -46,29 +46,20 @@ export interface HeroRelation {
   description: string;
 }
 
+// V3: 扩展至 40+ 种关系类型
 export type RelationType =
-  | 'ally'          // 盟友
-  | 'enemy'         // 敌人
-  | 'lover'         // 恋人
-  | 'mentor'        // 师父
-  | 'student'       // 徒弟
-  | 'teacher'       // 老师（与 mentor 类似，更口语化）
-  | 'sibling'       // 兄弟姐妹
-  | 'parent'        // 父母
-  | 'child'         // 子女
-  | 'rival'         // 宿敌
-  | 'neutral'       // 中立
-  | 'colleague'     // 同僚
-  | 'teammate'      // 队友
-  | 'friend'        // 朋友
-  | 'former_friend' // 昔日好友
-  | 'benefactor'    // 恩人
-  | 'creator'       // 创造者
-  | 'guardian'      // 守护者
-  | 'comrade'       // 战友
-  | 'subordinate'   // 下属
-  | 'superior'      // 上级
-  | 'connection';   // 关联
+  // 基础关系
+  | 'ally' | 'enemy' | 'lover' | 'mentor' | 'student' | 'teacher'
+  | 'sibling' | 'parent' | 'child' | 'rival' | 'neutral' | 'colleague'
+  | 'teammate' | 'friend' | 'former_friend' | 'benefactor' | 'creator'
+  | 'guardian' | 'comrade' | 'subordinate' | 'superior' | 'connection'
+  // V3 新增关系
+  | 'protector' | 'protected' | 'twin' | 'spouse' | 'ex_lover' | 'adopted'
+  | 'adoptive_parent' | 'master' | 'servant' | 'companion' | 'predecessor'
+  | 'successor' | 'reincarnation' | 'host' | 'parasite' | 'clone' | 'original'
+  | 'contractor' | 'contracted' | 'worshipper' | 'deity' | 'nemesis'
+  | 'betrayer' | 'betrayed' | 'rescuer' | 'rescued' | 'soulmate'
+  | 'fused' | 'fragment' | 'mirror' | 'shadow' | 'past_self' | 'future_self';
 
 export interface Skill {
   name: string;
@@ -253,6 +244,261 @@ export interface VideoTopic {
   tags: string[];
 }
 
+// ============================================================
+// V3 新增类型 - AI Native Knowledge Engine
+// ============================================================
+
+// ---------- 地域 Region ----------
+export interface Region {
+  id: string;              // e.g. "region_zhulu"
+  name: string;            // 中文名称
+  description: string;
+  locations: string[];     // 地点 ID 列表
+  factions: string[];      // 阵营 ID 列表
+  geography: string;      // 地理特征
+  climate: string;        // 气候描述
+  significance: string;    // 战略/文化意义
+  tags: string[];
+}
+
+// ----------  lore 物品 Item ----------
+export interface LoreItem {
+  id: string;
+  name: string;
+  type: 'weapon' | 'artifact' | 'relic' | 'tome' | 'potion' | 'material' | 'other';
+  description: string;
+  lore: string;             // 背景故事
+  owner?: string;           // 当前持有者英雄 ID
+  creator?: string;         // 创造者英雄 ID
+  origin: string;          // 来源/出处
+  abilities?: string[];      // 能力/效果列表
+  tags: string[];
+}
+
+// ---------- 视频条目 Video Entry ----------
+export interface VideoEntry {
+  id: string;
+  title: string;
+  platform: 'douyin' | 'kuaishou' | 'bilibili' | 'video_channel' | 'xiaohongshu';
+  url?: string;
+  duration: number;         // 秒
+  heroes: string[];         // 相关英雄 ID
+  tags: string[];
+  publishedAt: string;
+  status: 'draft' | 'published' | 'archived';
+  metrics?: {
+    views?: number;
+    likes?: number;
+    shares?: number;
+    comments?: number;
+  };
+}
+
+// ---------- 英雄技能 Hero Skill ----------
+export interface HeroSkill {
+  id: string;
+  heroId: string;
+  name: string;
+  type: 'passive' | 'active' | 'ultimate';
+  description: string;
+  lore: string;             // 技能背景故事/设定
+  effects: string[];
+  cooldown?: number;        // 冷却时间（秒）
+  manaCost?: number;        // 蓝耗
+  tags: string[];
+}
+
+// ---------- 对话 Dialogue ----------
+export type DialogueType = 'story' | 'battle' | 'interaction' | 'quest' | 'cutscene' | 'lore' | 'emote';
+
+export type EmotionType = 'neutral' | 'happy' | 'sad' | 'angry' | 'fear' | 'surprise' | 'disgust' | 'love' | 'determination' | 'confused' | 'calm' | 'excited' | 'mysterious';
+
+export interface Dialogue {
+  id: string;
+  heroId: string;
+  text: string;
+  context: string;          // 发生场景
+  type: DialogueType;
+  emotion: EmotionType;
+  targetId?: string;        // 对话对象英雄 ID
+  eventId?: string;         // 关联事件 ID
+  tags: string[];
+  source: string;           // 出处（游戏/漫画/动画/官方文本）
+}
+
+// ---------- 故事节点 Story Node ----------
+export interface StoryNode {
+  id: string;
+  title: string;
+  eventId?: string;         // 关联事件 ID
+  characters: string[];      // 参与英雄 ID
+  action: string;            // 核心行为/动作
+  cause: string;             // 原因/动机
+  impact: string;            // 直接影响
+  result: string;            // 结果/后果
+  nextEvents: string[];      // 后续事件 ID
+  prevEvents: string[];      // 前置事件 ID
+  tags: string[];
+  location?: string;         // 发生地点 ID
+  timelinePosition: number;  // 时间线位置（数值越小越早）
+}
+
+// ---------- 记忆 Memory ----------
+export interface Memory {
+  id: string;
+  type: 'fact' | 'rule' | 'preference' | 'correction' | 'insight' | 'relationship' | 'decision';
+  content: string;
+  source: string;             // 来源：哪个文件/数据
+  confidence: number;         // 0.0 ~ 1.0
+  heroIds?: string[];         // 相关英雄
+  eventIds?: string[];        // 相关事件
+  projectId?: string;         // 所属项目
+  createdAt: string;
+  updatedAt: string;
+  tags: string[];
+  accessCount: number;        // 被引用次数
+  lastAccessed?: string;
+}
+
+// ---------- 对话记录 Conversation Entry ----------
+export interface ConversationEntry {
+  id: string;
+  role: 'user' | 'assistant' | 'system';
+  content: string;
+  projectId?: string;
+  taskId?: string;
+  timestamp: string;
+  tags: string[];
+  referencedEntities: string[]; // 引用的实体 ID
+}
+
+// ---------- 决策 Decision ----------
+export interface Decision {
+  id: string;
+  context: string;            // 决策背景
+  options: string[];          // 可选方案
+  chosen: string;             // 最终选择
+  reason: string;             // 选择理由
+  projectId?: string;
+  taskId?: string;
+  impact: string;             // 预期影响
+  status: 'pending' | 'made' | 'reversed' | 'superseded';
+  createdAt: string;
+  updatedAt: string;
+  tags: string[];
+}
+
+// ---------- Prompt 记录 Prompt Entry ----------
+export interface PromptEntry {
+  id: string;
+  title: string;
+  prompt: string;             // 完整 Prompt 文本
+  type: 'system' | 'user' | 'template' | 'script' | 'search' | 'generation';
+  projectId?: string;
+  taskId?: string;
+  output?: string;             // 输出结果摘要
+  model?: string;              // 使用的模型
+  tokens?: number;             // 消耗 token 数
+  createdAt: string;
+  tags: string[];
+}
+
+// ---------- 项目 Project ----------
+export interface Project {
+  id: string;
+  name: string;
+  description: string;
+  status: 'active' | 'paused' | 'completed' | 'cancelled';
+  type: 'short_drama' | 'analysis' | 'database' | 'tool' | 'research' | 'content';
+  seasons: Season[];
+  heroes: string[];           // 相关英雄
+  factions: string[];         // 相关阵营
+  decisions: string[];        // 决策 ID 列表
+  memories: string[];         // 记忆 ID 列表
+  createdAt: string;
+  updatedAt: string;
+  tags: string[];
+}
+
+export interface Season {
+  id: string;
+  name: string;
+  description: string;
+  episodes: Episode[];
+  order: number;
+  status: 'draft' | 'in_production' | 'completed' | 'published';
+}
+
+export interface Episode {
+  id: string;
+  name: string;
+  description: string;
+  scriptUrl?: string;
+  storyNodeIds: string[];
+  duration: number;           // 预计时长（秒）
+  platform: string[];         // 目标平台
+  status: 'draft' | 'scripted' | 'produced' | 'published';
+  order: number;
+}
+
+// ---------- 任务 Task ----------
+export interface Task {
+  id: string;
+  name: string;
+  description: string;
+  projectId?: string;
+  status: 'pending' | 'in_progress' | 'completed' | 'blocked' | 'cancelled';
+  priority: 'low' | 'medium' | 'high' | 'critical';
+  assignedTo?: string;        // 分配给（AI agent / human）
+  dependencies: string[];      // 依赖任务 ID
+  createdAt: string;
+  updatedAt: string;
+  completedAt?: string;
+  result?: string;            // 完成结果
+  tags: string[];
+}
+
+// ---------- 脚本生成 ----------
+export interface ScriptRequest {
+  heroId: string;             // 主角英雄
+  platform: 'douyin' | 'kuaishou' | 'bilibili' | 'video_channel' | 'xiaohongshu';
+  style: 'epic' | 'emotional' | 'comedic' | 'mysterious' | 'action' | 'lore';
+  duration: number;            // 目标时长（秒），通常 60-180
+  focusEvents?: string[];      // 重点事件 ID
+  focusRelations?: string[];   // 重点关系 ID
+  toneNotes?: string;          // 语气备注
+  bgmPreference?: string;      // BGM偏好
+}
+
+export interface ScriptOutput {
+  id: string;
+  request: ScriptRequest;
+  title: string;
+  hook: string;                // 开头钩子（黄金3秒）
+  scenes: ScriptScene[];
+  totalDuration: number;
+  suggestedBgm: string;
+  suggestedTags: string[];
+  suggestedTitle: string[];
+  platform: string;
+  createdAt: string;
+}
+
+export interface ScriptScene {
+  id: string;
+  order: number;
+  title: string;
+  duration: number;            // 本幕时长（秒）
+  type: 'opening' | 'rising' | 'climax' | 'falling' | 'ending';
+  content: string;             // 脚本内容（包含镜头、旁白、字幕、动作）
+  characters: string[];         // 出现角色
+  location?: string;
+  bgm?: string;
+  sfx?: string[];              // 音效
+  subtitle: string;            // 字幕文案
+  voiceover?: string;          // 旁白文案
+}
+
 // ---------- API 通用响应 ----------
 export interface ApiResponse<T> {
   data: T;
@@ -269,7 +515,7 @@ export interface ApiError {
 }
 
 export interface SearchResult {
-  type: 'hero' | 'faction' | 'event' | 'location' | 'organization' | 'quote' | 'videoTopic';
+  type: 'hero' | 'faction' | 'event' | 'location' | 'organization' | 'quote' | 'videoTopic' | 'storyNode' | 'project' | 'task' | 'dialogue';
   id: string;
   name: string;
   description: string;
@@ -282,7 +528,7 @@ export interface SearchResult {
 export interface GraphNode {
   id: string;
   name: string;
-  type: 'hero' | 'faction';
+  type: 'hero' | 'faction' | 'location' | 'event' | 'item';
   group?: string;
   x?: number;
   y?: number;

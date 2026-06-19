@@ -1,0 +1,14 @@
+[
+  {
+    "id": "prompt_s01e03_script",
+    "title": "S01E03 曜觉醒 · 星辰之子 脚本生成",
+    "prompt": "基于王者荣耀官方世界观，为KPL官方短剧生成 S01E03 '曜觉醒·星辰之子' 的90秒抖音脚本。\n\n主角：曜（星辰之子，hero_yao）\n核心剧情：曜在稷下学院的最终测试中，面对魔道危机，觉醒星辰之力。\n风格：燃向（epic），强调姐弟羁绊\nBGM：史诗感电子+古风弦乐\n\n要求：\n1. 开头3秒必须有强烈钩子（黄金3秒）\n2. 分4幕结构：引子/冲突/高潮/余韵\n3. 每幕包含镜头描述、字幕文案、旁白文案\n4. 总时长严格控制在90秒\n5. 结尾引导关注KPL官方账号\n6. 台词符合曜张扬自信的性格\n\n参考资料：\n- 曜英雄数据：/api/v3/heroes/hero_yao\n- 镜英雄数据：/api/v3/heroes/hero_jing\n- 相关故事节点：/api/v3/story-nodes?heroId=hero_yao",
+    "type": "script",
+    "projectId": "project_kpl_short_drama",
+    "taskId": "task_s3_script",
+    "output": "已生成90秒4幕脚本，包含镜头/BGM/字幕/旁白。曜台词符合人物性格，强调姐弟羁绊和星辰觉醒。",
+    "model": "gpt-4o",
+    "createdAt": "2024-06-15T00:00:00Z",
+    "tags": ["脚本", "S01E03", "曜", "抖音"]
+  }
+]

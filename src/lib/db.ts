@@ -1,13 +1,16 @@
 // ============================================================
-// 数据库工具层 - 读取 JSON 文件作为数据库
-// Database Utility Layer - JSON File System Database
+// 数据库工具层 - 读取 JSON 文件作为数据库 (V3)
+// Database Utility Layer - JSON File System Database (V3)
 // ============================================================
 
 import fs from 'fs';
 import path from 'path';
 import type {
   Hero, Faction, LoreEvent, TimelineEntry, Relation,
-  Location, Organization, Quote, VideoTopic, GraphData, GraphEdge, GraphNode
+  Location, Organization, Quote, VideoTopic, GraphData, GraphEdge, GraphNode,
+  // V3 types
+  StoryNode, Dialogue, Region, LoreItem, VideoEntry, HeroSkill,
+  Memory, ConversationEntry, Decision, PromptEntry, Project, Task
 } from './types';
 
 const DATA_DIR = path.join(process.cwd(), 'data');
@@ -43,6 +46,11 @@ function readIndexFile<T>(dirPath: string): T[] {
     return data || [];
   }
   return readJsonDir<T>(dirPath);
+}
+
+function readV3Dir<T>(subPath: string): T[] {
+  const dirPath = path.join(DATA_DIR, 'v3', subPath);
+  return readIndexFile<T>(dirPath);
 }
 
 // ---------- 英雄 Heroes ----------
@@ -221,6 +229,124 @@ export const videoTopicDb = {
   },
 };
 
+// ============================================================
+// V3 新增数据库层
+// ============================================================
+
+// ---------- 地域 Regions ----------
+export const regionDb = {
+  getAll(): Region[] {
+    return readV3Dir<Region>('region');
+  },
+  getById(id: string): Region | null {
+    return readJsonFile<Region>(path.join(DATA_DIR, 'v3', 'region', `${id}.json`))
+      || this.getAll().find(r => r.id === id) || null;
+  },
+};
+
+// ---------- 故事节点 Story Nodes ----------
+export const storyNodeDb = {
+  getAll(): StoryNode[] {
+    return readV3Dir<StoryNode>('story-node');
+  },
+  getById(id: string): StoryNode | null {
+    return this.getAll().find(n => n.id === id) || null;
+  },
+  getByEventId(eventId: string): StoryNode[] {
+    return this.getAll().filter(n => n.eventId === eventId);
+  },
+  getByHeroId(heroId: string): StoryNode[] {
+    return this.getAll().filter(n => n.characters.includes(heroId));
+  },
+};
+
+// ---------- 对话 Dialogues ----------
+export const dialogueDb = {
+  getAll(): Dialogue[] {
+    return readV3Dir<Dialogue>('dialogue');
+  },
+  getById(id: string): Dialogue | null {
+    return this.getAll().find(d => d.id === id) || null;
+  },
+  getByHeroId(heroId: string): Dialogue[] {
+    return this.getAll().filter(d => d.heroId === heroId || d.targetId === heroId);
+  },
+};
+
+// ---------- 项目 Projects ----------
+export const projectDb = {
+  getAll(): Project[] {
+    return readV3Dir<Project>('project');
+  },
+  getById(id: string): Project | null {
+    return this.getAll().find(p => p.id === id) || null;
+  },
+  getByType(type: string): Project[] {
+    return this.getAll().filter(p => p.type === type);
+  },
+};
+
+// ---------- 任务 Tasks ----------
+export const taskDb = {
+  getAll(): Task[] {
+    return readV3Dir<Task>('task');
+  },
+  getById(id: string): Task | null {
+    return this.getAll().find(t => t.id === id) || null;
+  },
+  getByProjectId(projectId: string): Task[] {
+    return this.getAll().filter(t => t.projectId === projectId);
+  },
+  getByStatus(status: Task['status']): Task[] {
+    return this.getAll().filter(t => t.status === status);
+  },
+};
+
+// ---------- 记忆 Memories ----------
+export const memoryDb = {
+  getAll(): Memory[] {
+    return readV3Dir<Memory>('memory');
+  },
+  getById(id: string): Memory | null {
+    return this.getAll().find(m => m.id === id) || null;
+  },
+  getByProjectId(projectId: string): Memory[] {
+    return this.getAll().filter(m => m.projectId === projectId);
+  },
+  getByHeroId(heroId: string): Memory[] {
+    return this.getAll().filter(m => m.heroIds?.includes(heroId) || false);
+  },
+};
+
+// ---------- 决策 Decisions ----------
+export const decisionDb = {
+  getAll(): Decision[] {
+    return readV3Dir<Decision>('decision');
+  },
+  getById(id: string): Decision | null {
+    return this.getAll().find(d => d.id === id) || null;
+  },
+  getByProjectId(projectId: string): Decision[] {
+    return this.getAll().filter(d => d.projectId === projectId);
+  },
+};
+
+// ---------- Prompt 记录 Prompts ----------
+export const promptDb = {
+  getAll(): PromptEntry[] {
+    return readV3Dir<PromptEntry>('prompt');
+  },
+  getById(id: string): PromptEntry | null {
+    return this.getAll().find(p => p.id === id) || null;
+  },
+  getByProjectId(projectId: string): PromptEntry[] {
+    return this.getAll().filter(p => p.projectId === projectId);
+  },
+  getByType(type: PromptEntry['type']): PromptEntry[] {
+    return this.getAll().filter(p => p.type === type);
+  },
+};
+
 // ---------- 全局统计 ----------
 
 export function getStats() {
@@ -233,6 +359,15 @@ export function getStats() {
     quotes: quoteDb.getAll().length,
     videoTopics: videoTopicDb.getAll().length,
     relations: relationDb.getAll().length,
+    // V3 stats
+    regions: regionDb.getAll().length,
+    storyNodes: storyNodeDb.getAll().length,
+    dialogues: dialogueDb.getAll().length,
+    projects: projectDb.getAll().length,
+    tasks: taskDb.getAll().length,
+    memories: memoryDb.getAll().length,
+    decisions: decisionDb.getAll().length,
+    prompts: promptDb.getAll().length,
   };
 }
 
@@ -246,7 +381,7 @@ export function buildSearchIndex() {
     description: h.description,
     url: `/heroes/${h.id}`,
     tags: h.tags,
-    searchText: `${h.name} ${h.title} ${h.alias?.join(' ')} ${h.factionName || ''} ${h.energy || ''} ${h.identity || ''} ${h.description} ${h.tags.join(' ')}`,
+    searchText: `${h.name} ${h.title} ${h.alias?.join(' ') || ''} ${h.factionName || ''} ${h.energy || ''} ${h.identity || ''} ${h.description} ${h.tags.join(' ')}`,
   }));
 
   const factions = factionDb.getAll().map(f => ({
@@ -280,4 +415,51 @@ export function buildSearchIndex() {
   }));
 
   return [...heroes, ...factions, ...events, ...locations];
+}
+
+// V3: 扩展搜索索引包含 storyNodes 和 projects
+export function buildV3SearchIndex() {
+  const base = buildSearchIndex();
+  
+  const storyNodes = storyNodeDb.getAll().map(n => ({
+    type: 'storyNode' as const,
+    id: n.id,
+    name: n.title,
+    description: n.impact,
+    url: `/api/v3/story-nodes/${n.id}`,
+    tags: n.tags,
+    searchText: `${n.title} ${n.action} ${n.cause} ${n.impact} ${n.result} ${n.tags.join(' ')}`,
+  }));
+
+  const projects = projectDb.getAll().map(p => ({
+    type: 'project' as const,
+    id: p.id,
+    name: p.name,
+    description: p.description,
+    url: `/api/v3/projects/${p.id}`,
+    tags: p.tags,
+    searchText: `${p.name} ${p.description} ${p.tags.join(' ')}`,
+  }));
+
+  const tasks = taskDb.getAll().map(t => ({
+    type: 'task' as const,
+    id: t.id,
+    name: t.name,
+    description: t.description,
+    url: `/api/v3/tasks/${t.id}`,
+    tags: t.tags,
+    searchText: `${t.name} ${t.description} ${t.tags.join(' ')}`,
+  }));
+
+  const dialogues = dialogueDb.getAll().map(d => ({
+    type: 'dialogue' as const,
+    id: d.id,
+    name: `${d.heroId}台词`,
+    description: d.text.slice(0, 100),
+    url: `/api/v3/dialogues/${d.id}`,
+    tags: d.tags,
+    searchText: `${d.text} ${d.context} ${d.tags.join(' ')}`,
+  }));
+
+  return [...base, ...storyNodes, ...projects, ...tasks, ...dialogues];
 }

@@ -1,0 +1,55 @@
+{
+  "id": "project_kpl_short_drama",
+  "name": "KPL官方AI短剧",
+  "description": "基于王者荣耀官方世界观，自动生成适配抖音/视频号/B站/快手/小红书的短剧脚本。由AI持续管理内容创作全流程。",
+  "status": "active",
+  "type": "short_drama",
+  "heroes": ["hero_yao", "hero_jing", "hero_miyamoto", "hero_luban", "hero_donghuang"],
+  "factions": ["faction_jixia", "faction_changan"],
+  "decisions": ["decision_001", "decision_002"],
+  "memories": ["memory_001", "memory_002", "memory_003"],
+  "seasons": [
+    {
+      "id": "S1",
+      "name": "稷下少年",
+      "description": "以稷下学院为背景，讲述曜、镜姐弟在稷下的成长故事，穿插其他稷下英雄羁绊。",
+      "order": 1,
+      "status": "in_production",
+      "episodes": [
+        {
+          "id": "S01E01",
+          "name": "曜镜初逢 · 命运的镜",
+          "description": "曜初到稷下学院，与镜首次正面相遇。镜作为高年级守护者，对曜充满戒备。",
+          "duration": 90,
+          "platform": ["douyin", "video_channel"],
+          "status": "scripted",
+          "order": 1,
+          "storyNodeIds": ["story_node_001", "story_node_002"]
+        },
+        {
+          "id": "S01E02",
+          "name": "镜入魔道 · 守护者的代价",
+          "description": "镜为守护曜，不惜触碰魔道力量。姐弟之间产生裂痕。",
+          "duration": 90,
+          "platform": ["douyin", "video_channel"],
+          "status": "scripted",
+          "order": 2,
+          "storyNodeIds": ["story_node_003", "story_node_004"]
+        },
+        {
+          "id": "S01E03",
+          "name": "曜觉醒 · 星辰之子",
+          "description": "曜在危机中觉醒星辰之力，理解了姐姐守护的真正含义。",
+          "duration": 90,
+          "platform": ["douyin", "video_channel"],
+          "status": "draft",
+          "order": 3,
+          "storyNodeIds": ["story_node_005", "story_node_006"]
+        }
+      ]
+    }
+  ],
+  "createdAt": "2024-05-20T00:00:00Z",
+  "updatedAt": "2024-06-18T12:00:00Z",
+  "tags": ["KPL", "短剧", "AI生成", "抖音", "稷下", "曜", "镜"]
+}

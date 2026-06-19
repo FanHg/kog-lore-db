@@ -1,0 +1,45 @@
+[
+  {
+    "id": "task_hero_yao_lore",
+    "name": "整理曜英雄全部剧情节点",
+    "description": "梳理曜从稷下入学到觉醒星辰之力的所有关键剧情节点，形成结构化故事节点数据。",
+    "projectId": "project_kpl_short_drama",
+    "status": "completed",
+    "priority": "high",
+    "assignedTo": "AI",
+    "dependencies": [],
+    "createdAt": "2024-05-20T00:00:00Z",
+    "updatedAt": "2024-06-01T00:00:00Z",
+    "completedAt": "2024-06-01T00:00:00Z",
+    "result": "已完成 12 个故事节点整理，覆盖入学测试、姐弟冲突、魔道危机、星辰觉醒等关键剧情。",
+    "tags": ["曜", "剧情整理", "故事节点"]
+  },
+  {
+    "id": "task_hero_jing_lore",
+    "name": "整理镜英雄全部剧情节点",
+    "description": "梳理镜作为守护者、触碰魔道、与曜的羁绊等关键剧情节点。",
+    "projectId": "project_kpl_short_drama",
+    "status": "completed",
+    "priority": "high",
+    "assignedTo": "AI",
+    "dependencies": ["task_hero_yao_lore"],
+    "createdAt": "2024-05-21T00:00:00Z",
+    "updatedAt": "2024-06-05T00:00:00Z",
+    "completedAt": "2024-06-05T00:00:00Z",
+    "result": "已完成 10 个故事节点整理，覆盖守护者职责、魔道代价、姐弟和解等关键剧情。",
+    "tags": ["镜", "剧情整理", "故事节点"]
+  },
+  {
+    "id": "task_s3_script",
+    "name": "生成第三季脚本",
+    "description": "基于前两季数据，生成第三季的完整脚本大纲和分集脚本。需要整合曜镜姐弟关系、稷下背景、其他英雄支线。",
+    "projectId": "project_kpl_short_drama",
+    "status": "in_progress",
+    "priority": "critical",
+    "assignedTo": "AI",
+    "dependencies": ["task_hero_yao_lore", "task_hero_jing_lore"],
+    "createdAt": "2024-06-10T00:00:00Z",
+    "updatedAt": "2024-06-18T00:00:00Z",
+    "tags": ["脚本生成", "第三季", "AI创作"]
+  }
+]
