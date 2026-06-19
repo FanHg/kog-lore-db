@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { promptDb } from '@/lib/db';
 import { apiSuccess, apiError } from '@/lib/utils';
+import type { PromptEntry } from '@/lib/types';
 
 export const dynamic = 'force-dynamic';
 
