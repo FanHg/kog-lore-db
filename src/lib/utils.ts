@@ -30,8 +30,10 @@ export function apiError(message: string, code = 400) {
   };
 }
 
-// Relation type display
-export const RELATION_LABELS: Record<RelationType, string> = {
+// Relation type display — use string key for flexibility with V3 extended types
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const RELATION_LABELS: Record<string, string> = {
+  // 基础关系 (21)
   ally: '盟友',
   enemy: '敌人',
   lover: '恋人',
@@ -54,9 +56,45 @@ export const RELATION_LABELS: Record<RelationType, string> = {
   subordinate: '下属',
   superior: '上级',
   connection: '关联',
+  // V3 新增关系 (30)
+  protector: '保护者',
+  protected: '被保护者',
+  twin: '双胞胎',
+  spouse: '配偶',
+  ex_lover: '前恋人',
+  adopted: '养子/养女',
+  adoptive_parent: '养父母',
+  master: '主人',
+  servant: '仆人',
+  companion: '同伴',
+  predecessor: '前任者',
+  successor: '继任者',
+  reincarnation: '转世',
+  host: '宿主',
+  parasite: '寄生者',
+  clone: '克隆体',
+  original: '本体',
+  contractor: '委托人',
+  contracted: '受雇者',
+  worshipper: '崇拜者',
+  deity: '神祇',
+  nemesis: '死敌',
+  betrayer: '背叛者',
+  betrayed: '被背叛者',
+  rescuer: '拯救者',
+  rescued: '被救者',
+  soulmate: '灵魂伴侣',
+  fused: '融合体',
+  fragment: '碎片',
+  mirror: '镜面体',
+  shadow: '影子',
+  past_self: '过去的自己',
+  future_self: '未来的自己',
 };
 
-export const RELATION_COLORS: Record<RelationType, string> = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const RELATION_COLORS: Record<string, string> = {
+  // 基础关系 (21)
   ally: '#1A8A5A',         // jade - 友善
   enemy: '#C02030',        // crimson - 敌对
   lover: '#D44077',        // rose - 恋情
@@ -79,6 +117,40 @@ export const RELATION_COLORS: Record<RelationType, string> = {
   subordinate: '#6A8A7A',  // muted teal - 下属
   superior: '#5A7A9A',     // slate blue - 上级
   connection: '#8A8A8A',   // medium gray - 关联
+  // V3 新增关系 (30)
+  protector: '#2E6B9E',    // deep blue - 保护
+  protected: '#5BA3D9',    // light blue - 被保护
+  twin: '#9932CC',         // dark violet - 双生
+  spouse: '#E91E63',       // pink - 配偶
+  ex_lover: '#B06290',     // mauve - 前恋
+  adopted: '#FFB347',      // orange - 收养
+  adoptive_parent: '#CD853F', // peru - 养父母
+  master: '#4B0082',       // indigo - 主仆
+  servant: '#708090',      // slate gray - 仆人
+  companion: '#20B2AA',    // light sea green - 同伴
+  predecessor: '#556B2F',  // olive drab - 前任
+  successor: '#00CED1',    // dark turquoise - 继任
+  reincarnation: '#9370DB', // medium purple - 转世
+  host: '#8B4513',         // saddle brown - 宿主
+  parasite: '#228B22',     // forest green - 寄生
+  clone: '#483D8B',        // dark slate blue - 克隆
+  original: '#FFD700',     // gold - 本体
+  contractor: '#4682B4',   // steel blue - 委托
+  contracted: '#696969',   // dim gray - 受雇
+  worshipper: '#DA70D6',   // orchid - 崇拜
+  deity: '#FFDAB9',       // peach puff - 神祇
+  nemesis: '#8B0000',      // dark red - 死敌
+  betrayer: '#DC143C',     // crimson - 背叛
+  betrayed: '#800000',     // maroon - 被背叛
+  rescuer: '#32CD32',      // lime green - 拯救
+  rescued: '#98FB98',      // pale green - 被救
+  soulmate: '#FF69B4',     // hot pink - 灵魂伴侣
+  fused: '#7FFFD4',       // aquamarine - 融合
+  fragment: '#DAA520',     // goldenrod - 碎片
+  mirror: '#C0C0C0',       // silver - 镜面
+  shadow: '#2F4F4F',       // dark slate gray - 影子
+  past_self: '#BC8F8F',    // rosy brown - 过去自己
+  future_self: '#ADD8E6',  // light blue - 未来自己
 };
 
 // Role display
