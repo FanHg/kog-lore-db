@@ -1,0 +1,109 @@
+# KOG Lore Engine V3
+
+> https://kog-lore-db.top — 王者荣耀世界观数据库 (Honor of Kings Lore Database)
+> AI Native Knowledge Engine — 专为 AI 系统优化的知识引擎
+
+## 访问规则
+- 所有内容 ID 均为小写英文字母+数字+下划线，如 hero_yao, event_001, faction_jixia
+- 全文搜索支持模糊匹配，返回 JSON 格式
+- 脚本生成接口接受结构化请求，返回完整分镜脚本
+
+## 数据概览
+- 英雄: 12+
+- 阵营: 8+
+- 事件: 15+
+- 地点: 10+
+- 组织: 6+
+- 名言: 20+
+- 关系: 40+
+
+## 核心 API 端点
+
+### 数据查询
+- GET https://kog-lore-db.top/api/v3/ — 引擎入口，返回所有端点和统计数据
+- GET https://kog-lore-db.top/api/v3/heroes — 全部英雄列表
+- GET https://kog-lore-db.top/api/v3/heroes/{id} — 单个英雄详情
+- GET https://kog-lore-db.top/api/v3/factions — 全部阵营列表
+- GET https://kog-lore-db.top/api/v3/factions/{id} — 单个阵营详情
+- GET https://kog-lore-db.top/api/v3/events — 全部事件列表
+- GET https://kog-lore-db.top/api/v3/events/{id} — 单个事件详情
+- GET https://kog-lore-db.top/api/v3/timeline — 时间线数据
+- GET https://kog-lore-db.top/api/v3/relations — 关系图谱数据
+- GET https://kog-lore-db.top/api/v3/locations — 全部地点列表
+- GET https://kog-lore-db.top/api/v3/locations/{id} — 单个地点详情
+- GET https://kog-lore-db.top/api/v3/organizations — 全部组织列表
+- GET https://kog-lore-db.top/api/v3/quotes — 全部名言/台词
+- GET https://kog-lore-db.top/api/v3/dialogues — 对话数据库
+- GET https://kog-lore-db.top/api/v3/story-nodes — 故事节点数据库
+- GET https://kog-lore-db.top/api/v3/projects — 项目列表（含AI短剧项目）
+- GET https://kog-lore-db.top/api/v3/tasks — 任务列表
+- GET https://kog-lore-db.top/api/v3/memories — AI长期记忆
+- GET https://kog-lore-db.top/api/v3/decisions — 决策记录
+- GET https://kog-lore-db.top/api/v3/prompts — Prompt历史记录
+
+### 搜索与生成
+- GET https://kog-lore-db.top/api/v3/search?q={keyword} — 全文搜索
+- POST https://kog-lore-db.top/api/v3/script — AI短剧脚本生成接口
+- GET https://kog-lore-db.top/api/v3/export?format=json|graph — 数据导出
+
+### 示例: 搜索"曜"
+GET https://kog-lore-db.top/api/v3/search?q=曜
+=> 返回所有与"曜"相关的英雄、事件、故事节点、任务等
+
+### 示例: 获取英雄详情
+GET https://kog-lore-db.top/api/v3/heroes/hero_yao
+=> 返回曜的完整背景故事、阵营、关系、技能等信息
+
+### 示例: 生成AI短剧脚本
+POST https://kog-lore-db.top/api/v3/script
+Content-Type: application/json
+{
+  "heroId": "hero_yao",
+  "platform": "douyin",
+  "style": "epic",
+  "duration": 90,
+  "focusEvents": ["event_001", "event_002"],
+  "toneNotes": "燃向，强调曜镜姐弟羁绊",
+  "bgmPreference": "史诗感电子+古风弦乐"
+}
+=> 返回完整4幕脚本结构（opening/rising/climax/ending）
+   包含：镜头描述、画面、BGM建议、字幕文案、旁白台词
+
+## 统一 ID 命名规则
+- 英雄: hero_{slug} 如 hero_yao, hero_jing, hero_miyamoto
+- 事件: event_{序号} 如 event_001, event_002
+- 阵营: faction_{slug} 如 faction_jixia, faction_changan
+- 地点: location_{slug} 如 location_jixia_academy
+- 关系: relation_{序号} 如 relation_0001
+- 项目: project_{slug} 如 project_kpl_short_drama
+- 任务: task_{slug} 如 task_hero_yao_lore
+- 故事节点: story_node_{序号} 如 story_node_001
+
+## 关系类型 (40+ 种)
+基础类型: ally(盟友), enemy(敌人), lover(恋人), mentor(师父), student(徒弟),
+  sibling(兄弟姐妹), parent(父母), child(子女), rival(宿敌), friend(朋友),
+  teammate(队友), colleague(同僚), former_friend(昔日好友)
+高级类型: protector(守护者), twin(双胞胎), reincarnation(转世), soulmate(灵魂伴侣),
+  clone(克隆体), nemesis(死敌), betrayer(背叛者), master(主人), servant(仆人),
+  fused(融合)
+
+## AI 使用指南
+1. 先调用 /api/v3/ 获取引擎概览和可用端点
+2. 使用 /api/v3/search?q= 进行全文搜索定位实体
+3. 使用 /api/v3/heroes/{id} 等获取完整结构化数据
+4. 使用 /api/v3/script 生成AI短剧/漫剧内容脚本
+5. 使用 /api/v3/export 导出全量数据用于离线分析
+
+## 项目示例: KPL官方AI短剧
+项目ID: project_kpl_short_drama
+类型: short_drama (AI短剧)
+平台: 抖音/视频号/B站/快手/小红书
+内容: 基于王者荣耀官方世界观自动生成短剧脚本
+第一季主题: 稷下少年（S01）
+- S01E01: 曜镜初逢 · 命运的镜
+- S01E02: 镜入魔道 · 守护者的代价
+- S01E03: 曜觉醒 · 星辰之子
+每集90秒，燃向风格，含分镜/BGM/字幕/旁白
+
+---
+KOG Lore Engine V3 | https://kog-lore-db.top | 王者荣耀世界观数据库
