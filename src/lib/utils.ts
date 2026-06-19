@@ -12,8 +12,9 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-// API response helper
-export function apiSuccess<T>(data: T, meta?: { total?: number; page?: number; pageSize?: number }) {
+// API response helper — accepts flexible metadata for compatibility
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export function apiSuccess<T>(data: T, meta?: Record<string, any>) {
   return {
     data,
     ...meta,
